@@ -10,7 +10,7 @@ const { getInitials } = require('../utils/getInitials')
 router.post('/signup', async (req, res) => {
     try {
         const { name, email, mobile, password, confirmPassword } = req.body;
-        console.log(req.body)
+        // console.log(req.body)
 
         if (!name || !email || !mobile || !password || !confirmPassword) {
             return res.status(400).json({
@@ -36,7 +36,7 @@ router.post('/signup', async (req, res) => {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         const userInitials = getInitials(name)
-        console.log(userInitials)
+        // console.log(userInitials)
         const user = await User.create({
             name,
             email,

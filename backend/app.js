@@ -8,12 +8,23 @@ const cors = require('cors')
 require('dotenv').config()
 
 connectDB()
+const allowedOrigins = [
+  "http://localhost:5173", // Development environment
+  "https://link-manage.netlify.app/", // Production environment
+];
 
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend origin
-  credentials: true,              // Allow cookies
-}
-))
+  origin: [
+      'https://link-manage.netlify.app/',
+      'http://localhost:5173'
+  ],
+  credentials: true
+}))
+// app.use(cors({
+//   origin: 'http://localhost:5173', // Frontend origin
+//   credentials: true,              // Allow cookies
+// } 
+// ))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }))
 app.use(cookieParser())

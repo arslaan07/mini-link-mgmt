@@ -102,7 +102,7 @@ router.get("/analytics", verifyToken, async (req, res) => {
 
       });
   } catch (error) {
-      console.error('Analytics fetch error:', error);
+      // console.error('Analytics fetch error:', error);
       return res.status(500).json({
           success: false,
           message: "Failed to retrieve click analytics",
