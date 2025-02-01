@@ -19,7 +19,6 @@ app.use(
     origin: allowedOrigins,
     credentials: true, // ✅ Allow cookies
     methods: "GET,POST,PUT,DELETE", // ✅ Explicitly allow these methods
-    allowedHeaders: ["Content-Type", "Authorization"], // ✅ Allow specific headers
   })
 );
 
