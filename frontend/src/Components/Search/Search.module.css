@@ -1,0 +1,186 @@
+.container {
+    display: flex;
+
+}
+.main {
+    display: flex;
+    flex-direction: column;
+}
+.dashboard {
+    flex: 1;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    color: #3B3C51;
+    flex-direction: column;
+    padding-top: 0.5rem;
+
+}
+.tableContainer {
+  width: 94%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 16px;
+  margin-top: 2rem;
+  overflow: hidden;
+  font-size: 14px;
+}
+
+
+.tableHeader {
+  background: #f3f7fd;
+  text-align: left;
+
+}
+
+.tableHeader th {
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+  font-weight: 700;
+}
+
+.tableRow {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableRow td {
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #4a5568;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.activeStatus {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.inactiveStatus {
+  background: #fff8e1;
+  color: #b45309;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin: 0 4px;
+  color: #4a5568;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 8px;
+}
+
+
+.truncatedLink {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  
+  .linkContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .createdAt {
+    width: 158px;
+  }
+  .edit, .delete {
+    font-size: 20px;
+  }
+  .shortLink {
+    display: flex;
+    border-bottom: none;
+  }
+  .modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+  .copyIcon {
+    cursor: pointer;
+  }
+  .copyIcon:hover {
+    color: #636d7e;
+  }
+  .loader {
+    width: 83vw;
+    height: 88vh;
+  }
+  .pagination {
+    /* background-color: red; */
+    width: 100%;
+  }
+  /* TruncatedRemark.module.css */
+.remarkContainer {
+    position: relative;
+    display: inline-block;
+    max-width: 100%;
+  }
+  
+
+  
+  .fullRemark {
+    display: none;
+    position: absolute;
+    top: -100%;
+    left: 0;
+    background: white;
+    border: 1px solid #e0e0e0;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 200px;
+    max-width: 400px;
+    white-space: normal;
+    margin-top: 4px;
+  }
+  
+  .remarkContainer:hover .fullRemark {
+    display: block;
+  }
+  
+  @media (max-width: 768px) {
+    .fullRemark {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 300px;
+    }
+  }
+  .createdAt {
+    width: 158px;
+  }
+  

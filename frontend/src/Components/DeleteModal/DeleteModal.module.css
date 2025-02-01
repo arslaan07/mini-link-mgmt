@@ -1,0 +1,65 @@
+.container {
+    background: #fff;
+    width: 520px;
+    height: 220px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 4px;
+}
+.main {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    gap: 4rem;
+    padding-top: 1rem;
+}
+.button {
+    width: 179px;
+    height: 34px;
+    border-radius: 4px;
+    border: none;
+    cursor: pointer;
+}
+.buttonContainer {
+    display: flex;
+    gap: 1rem;
+    
+    
+}
+.no {
+    background: #ECECEE;
+    color: black;
+    font-size: 18px;
+    font-weight: 700;
+}
+.no:hover{
+    background: #828296;
+}
+.yes {
+    background: #1B48DA;
+    color: white;
+    font-size: 18px;
+    font-weight: 700;
+}
+.yes:hover {
+    background: #092352;
+}
+.heading {
+    font-size: 18px;
+    color: black;
+    font-weight: 600;
+}
+.cross {
+    position: absolute;
+    right: 16px;
+    top: 12px;
+    cursor: pointer;
+    font-size: 24px;
+}
+.cross:hover {
+    color:#899253
+}

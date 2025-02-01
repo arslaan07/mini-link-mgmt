@@ -1,0 +1,241 @@
+.container {
+    background: beige;
+    margin: auto;
+    width: 40%;
+    height: 100vh;
+    border-top-left-radius: 12px;
+    border-bottom-left-radius: 12px;
+    overflow: hidden;
+    position: relative;
+}
+.nav {
+    height: 55px;
+    background: #3B3C51;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    padding: 20px 16px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    position: relative;
+}
+.pageSpan {
+    position: absolute;
+    right: 16px;
+    top: 10px;
+    font-size: 32px;
+    cursor: pointer;
+} 
+.pageSpan:hover {
+    color: rgb(161, 161, 67);
+}
+.form {
+    padding: 2rem;
+    border-radius: 10px;
+    /* background-color: red; */
+    background-color: beige;
+  }
+  
+  .form h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+    
+  }
+  
+  .formGroup label {
+    display: block;
+    font-size: 18px;
+    margin-bottom: 0.5rem;
+    text-align: start;
+    font-weight: 600;
+  }
+  
+  .formGroup textarea {
+    min-width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 314px;
+    height: 150px;
+    /* background: blue; */
+  }
+  .formGroup input {
+    min-width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    width: 314px;
+    height: 38px;
+    /* background: blue; */
+  }
+  
+  .btn {
+    padding: 0.8rem;
+    /* margin: 0.5rem 0; */
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    height: 42px;
+    border: none;
+  
+  }
+  .btn:hover {
+    background-color: #0073e6;
+  }
+  .primaryBtn {
+    color: #3B3C51;
+    background-color: transparent;
+    font-weight: 600;
+    border: none;
+    margin-left: 16px;
+  }
+  .primaryBtn:hover {
+    background-color: transparent;
+    color: rgb(94, 94, 83);
+  }
+  .secondaryBtn {
+    color: #fff;
+    background-color: #1B48DA;
+    border: none;
+    width: 114px;
+    height: 42px;
+    margin-right: 16px;
+  }
+  
+  
+.error {
+    color: #e74c3c; /* Red color for errors */
+    font-size: 14px;
+    display: block;
+}
+.errorInput {
+    border-color: red;
+}
+
+.errorLabel {
+    color: red;
+}
+
+.requiredField::after {
+    content: "*";
+    color: red;
+    padding-left: 4px;
+  }
+  .footer {
+    height: 55px;
+    background: #EBEBEE;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+  }
+  .inputContainer {
+    position: relative;
+    width: 100%; /* Ensure it adapts to container width */
+
+  }
+  .inputContainer input {
+    width: 100%; /* Full width minus the button's space */
+    padding-right: 3rem; /* Add space for the button */
+    box-sizing: border-box; /* Ensure padding is included in width */
+  }
+  .datePickerBtn {
+    position: absolute;
+  right: 4px; /* Position button at the right */
+  top: 50%;
+  transform: translateY(-50%); /* Center the button vertically */
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: transparent; /* No background */
+  border-radius: 4px;
+  transition: background-color 0.2s ease;
+  font-size: 18px;
+  font-weight: 900;
+  }
+  .datePickerBtn:hover {
+    color: rgb(66, 59, 59); /* Add hover effect */
+  }
+  .datePickerOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    padding-top: 4rem;
+    width: 100vw; /* Full screen width */
+    height: 100vh; /* Full screen height */
+    display: flex;
+    align-items: center; /* Center vertically */
+    justify-content: center; /* Center horizontally */
+    background-color: rgba(0, 0, 0, 0.5); /* Optional: Dim background */
+    z-index: 1000; /* Ensure it's on top of other elements */
+  }
+  .react-datepicker {
+    z-index: 1010; /* Ensure it stays above overlay */
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  .switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 34px;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: '';
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+  }
+  
+  input:checked + .slider {
+    background-color: #2196f3;
+  }
+  
+  input:checked + .slider:before {
+    transform: translateX(26px);
+  }
+  .linkLabel {
+    display: flex;
+    justify-content: space-between;
+  }

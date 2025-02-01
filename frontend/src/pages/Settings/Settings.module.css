@@ -1,0 +1,125 @@
+.container {
+    display: flex;
+
+}
+.main {
+    display: flex;
+    flex-direction: column;
+}
+.dashboard {
+    flex: 1;
+    /* background: blue; */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+}
+
+.form {
+    padding: 2rem;
+    padding-top: 4rem;
+    border-radius: 10px;
+    text-align: center;
+    /* background-color: red; */
+    transform: translate(-20%, -20%);
+  }
+  
+  .form h2 {
+    margin-bottom: 1.5rem;
+  }
+  
+  .formGroup {
+    margin-bottom: 1rem;
+    display: flex;
+    justify-content: space-between; 
+    align-items: center;
+    gap: 2rem;    
+  }
+  
+  .formGroup label {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 0.5rem;
+    text-align: start;
+    font-weight: 600;
+  }
+  
+  .formGroup input {
+    width: 100%;
+    padding: 0.5rem;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    width: 314px;
+    height: 32px;
+    background: transparent;
+  }
+  
+  .btn {
+    width: 100%;
+    padding: 0.8rem;
+    /* margin: 0.5rem 0; */
+    border-radius: 6px;
+    font-size: 1rem;
+    cursor: pointer;
+    background: #1A61FB;
+    height: 42px;
+    border: none;
+  
+  }
+  .btn:hover {
+    background-color: #0073e6;
+  }
+  .primaryBtn {
+    color: #fff;
+    background: #1B48DA;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4rem;
+    margin-bottom: 1.2rem;
+  }
+  .secondaryBtn {
+    color: #fff;
+    background-color: #EB0D0D;
+    border: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .secondaryBtn:hover {
+    background-color: #e94141;
+  }
+  
+  .error {
+    color: #e74c3c; /* Red color for errors */
+    font-size: 14px;
+    display: block;
+    text-align: start;
+}
+.errorInput {
+    border-color: red;
+}
+
+.errorLabel {
+    color: red;
+}
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(5px);
+  }
+  .loader {
+    width: 83vw;
+    height: 88vh;
+  }

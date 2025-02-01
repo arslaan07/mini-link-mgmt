@@ -1,0 +1,136 @@
+.container {
+    display: flex;
+
+}
+.main {
+    display: flex;
+    flex-direction: column;
+}
+.dashboard {
+    flex: 1;
+    background: #f1f1f1;
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    gap: 2rem;
+    color: #3B3C51;
+    flex-direction: column;
+    padding-top: 0.5rem;
+}
+.tableContainer {
+  width: 94%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 16px;
+  margin-top: 2rem;
+  overflow: hidden;
+  font-size: 14px;
+
+}
+
+.tableHeader {
+  background: #f3f7fd;
+  text-align: left;
+
+}
+
+.tableHeader th {
+  padding: 12px 16px;
+  font-weight: 500;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+  font-weight: 700;
+}
+
+.tableRow {
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.tableRow td {
+  padding: 14px 16px;
+  border: 1px solid #e2e8f0;
+  font-weight: 500;
+}
+
+.copyButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  margin-left: 8px;
+  color: #4a5568;
+}
+
+.statusBadge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.activeStatus {
+  background: #e6f4ea;
+  color: #137333;
+}
+
+.inactiveStatus {
+  background: #fff8e1;
+  color: #b45309;
+}
+
+.actionButton {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  margin: 0 4px;
+  color: #4a5568;
+}
+
+.actionsContainer {
+  display: flex;
+  gap: 8px;
+}
+
+
+.truncatedLink {
+    max-width: 150px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+  }
+  
+  .linkContainer {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .createdAt {
+    width: 158px;
+  }
+  .edit, .delete {
+    font-size: 20px;
+  }
+  .shortLink {
+    display: flex;
+    border-bottom: none;
+  }
+  .loader {
+    width: 83vw;
+    height: 88vh;
+  }
+  .pagination {
+    /* background-color: red; */
+    width: 100%;
+  }
+  .noDataMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 24px; /* Increase font size */
+    font-weight: bold; /* Make the text bold */
+    color: #333; /* Optional: Set the text color */
+    text-align: center;
+    padding: 20px;
+  }
+  
