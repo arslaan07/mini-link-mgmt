@@ -99,10 +99,10 @@ const Search = ({ searchResults, onCopy }) => {
                   </td>
                   <td>
                     <div className={styles.shortLink}>
-                      <TruncatedLink link={`http://localhost/${link.shortUrl}`} />
+                      <TruncatedLink link={`https://mini-link-mgmt.onrender.com/${link.shortUrl}`} />
                       <IoCopyOutline
                         className={styles.copyIcon}
-                        onClick={() => handleCopy(`http://localhost:3000/api/urls/${link.shortUrl}`)}
+                        onClick={() => handleCopy(`https://mini-link-mgmt.onrender.com/api/urls/${link.shortUrl}`)}
                       />
                     </div>
                   </td>

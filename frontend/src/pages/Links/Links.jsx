@@ -120,7 +120,7 @@ const Links = () => {
         return <span className={badgeClass}>{status}</span>;
       };
       const handleCopy = (text) => {
-        navigator.clipboard.writeText(`http://localhost:3000/api/urls/${text}`);
+        navigator.clipboard.writeText(`https://mini-link-mgmt.onrender.com/api/urls/${text}`);
         alert('Link copied to clipboard!');
       };
 
@@ -196,7 +196,7 @@ const Links = () => {
                       <td><TruncatedLink link={link.originalUrl} /></td>
                       <td>
                         <div className={styles.shortLink}>
-                          <TruncatedLink link={`http://localhost/${link.shortUrl}`} />
+                          <TruncatedLink link={`https://mini-link-mgmt.onrender.com/${link.shortUrl}`} />
                           <IoCopyOutline 
                             className={styles.copyIcon} 
                             onClick={() => handleCopy(link.shortUrl)} 

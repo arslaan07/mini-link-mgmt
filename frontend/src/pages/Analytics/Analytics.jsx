@@ -141,7 +141,7 @@ const Analytics = () => {
                 <td><TruncatedLink link={link.originalUrl} /></td>
                 <td>
                   <div className={styles.shortLink}>
-                    {`http://localhost/${link.shortUrl}`}
+                    {`https://mini-link-mgmt.onrender.com/${link.shortUrl}`}
                   </div>
                 </td>
                 <td>{link.ipAddress}</td>
