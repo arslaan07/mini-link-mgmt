@@ -1,9 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styles from './DeleteModal.module.css'
 import { RxCross2 } from "react-icons/rx";
 import api from '../../../api';
 import { useNavigate, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
+import Loader from '../Loader/Loader';
 const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn, deleteLink }) => {
+  const [isLoading, setIsLoading] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
   const handleClick = () => {
@@ -20,16 +23,30 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
       setDeleteFormOn(!deleteFormOn)
     }
     if(isDeleteOn) {
-      
+      try {
+        setIsLoading(true)
         const response = await api.delete(`/api/auth/${params.id}`, { withCredentials: true });
-        console.log(response);
+        toast.success('Account deleted successfully', {
+                                    theme: 'colored',
+                                    style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+                                });
+    } catch (error) {
+        toast.error('Account deletion failed', {
+                                theme: 'colored',
+                                style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+                            });
+    } finally {
         setIsDeleteOn(!isDeleteOn)
-
+        setIsLoading(false);
+    }
         navigate('/login')
     }
     } catch (error) {
       console.error(error)
     }
+  }
+  if(isLoading) {
+    return <div className={styles.loader}><Loader /></div>
   }
   return (
     <div className={styles.container}>

@@ -3,7 +3,10 @@ import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../../api";
 import { toast } from "react-toastify";
+import { useDispatch } from 'react-redux';
+import { login } from '../../store/slices/authSlice'
 const SignUp = () => {
+  const dispatch = useDispatch()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -56,6 +59,9 @@ const SignUp = () => {
     if (Object.keys(newErrors).length === 0) {
       const response = await api.post('api/auth/signup', formData)
       console.log(response)
+      dispatch(login({
+                  user: response.data.user,
+                }))
       
       console.log("Form submitted successfully:", formData);
       toast.success('Signup successfull', {
@@ -63,7 +69,7 @@ const SignUp = () => {
         style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
     });
       // TODO: send data to the server
-      navigate('/login')
+      navigate(`/${response.data.user.id}/dashboard`)
     }
     } catch (error) {
       toast.error(error.message, {

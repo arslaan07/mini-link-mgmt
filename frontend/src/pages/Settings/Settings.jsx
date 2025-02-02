@@ -100,21 +100,7 @@ const Settings = () => {
 
     const handleDelete = async () => {
         setIsDeleteOn(!isDeleteOn);
-        try {
-            setIsLoading(true)
-            const response = await api.delete(`/api/auth/${params.id}`, { withCredentials: true });
-            toast.success('Account deleted successfully', {
-                                        theme: 'colored',
-                                        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-                                    });
-        } catch (error) {
-            toast.error('Account deletion failed', {
-                                    theme: 'colored',
-                                    style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-                                });
-        } finally {
-            setIsLoading(false);
-        }
+       
     };
     // const handleSave = async () => {
     //     try {

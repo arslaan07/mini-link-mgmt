@@ -53,7 +53,9 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
       setIsLoading(true); // Show loading spinner while logout is in progress
       const response = await api.get('/api/auth/logout', { withCredentials: true });
       dispatch(logout());
+      localStorage.clear()
       navigate('/login');
+      console.log(response.data.message)
       toast.success('Logout successfull', {
         theme: 'colored',
         style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
