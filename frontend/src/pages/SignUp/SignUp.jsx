@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import styles from "./SignUp.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import api from "../../../api";
-import { toast } from "react-toastify";
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice'
 import Loader from "../../Components/Loader/Loader";
+import { toast } from "sonner";
 const SignUp = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch()
@@ -67,17 +67,17 @@ const SignUp = () => {
                 }))
       
       console.log("Form submitted successfully:", formData);
-      toast.success('Signup successfull', {
-        theme: 'colored',
-        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-    });
-      // TODO: send data to the server
+      
+    toast.success('YAY! Signup successfull', {
+      theme: 'colored',
+      style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
+  });
       navigate(`/${response.data.user.id}/dashboard`)
     }
     } catch (error) {
-      toast.error(error.message, {
+      toast.error(`{OOPS! ${error.message}`, {
         theme: 'colored',
-        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+        style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
     });
         console.log(error)
     }

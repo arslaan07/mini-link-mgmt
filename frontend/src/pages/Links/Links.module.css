@@ -137,8 +137,8 @@
     color: #636d7e;
   }
   .loader {
-    width: 83vw;
-    height: 88vh;
+    width: 100vw;
+    height: 100vh;
   }
   .pagination {
     /* background-color: red; */

@@ -9,7 +9,7 @@ import api from '../../../api';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import Loader from '../Loader/Loader';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, setResponse }) => {
     const user = useSelector(state => state.auth.user);
@@ -80,20 +80,24 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
                 console.log("Form submitted successfully:", formData);
                 if(typeof setFormOn === 'function'){
                     setFormOn(false);
-                    toast.success('Link created successfully', {
+                    toast.success('YAY! Link created successfully', {
                         theme: 'colored',
-                        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+                        style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
                     });
                 }
                 if (typeof setEditFormOn === 'function') {
                     setEditFormOn(false);
-                    toast.success('Link edited successfully', {
+                    toast.success('YAY! Link edited successfully', {
                         theme: 'colored',
-                        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+                        style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
                     });
                 }
                 navigate(`/${user.id}/links`);
             } catch (error) {
+                toast.error('OOPS !', {
+                    theme: 'colored',
+                    style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
+                });
                 console.log(error);
             } finally {
                 setIsLoading(false);

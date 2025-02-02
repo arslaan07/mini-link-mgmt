@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const authRoutes = require("./routes/auth");
 const urlRoutes = require("./routes/url");
+const getUrlRoute = require("./routes/getUrl");
 const connectDB = require("./connection/mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
@@ -28,6 +29,7 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/urls", urlRoutes);
+app.use("/:shortUrl", getUrlRoute)
 function keepServerAlive() {
   if (process.env.RENDER_EXTERNAL_URL) {
       setInterval(async () => {

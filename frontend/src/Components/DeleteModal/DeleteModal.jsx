@@ -3,10 +3,10 @@ import styles from './DeleteModal.module.css'
 import { RxCross2 } from "react-icons/rx";
 import api from '../../../api';
 import { useNavigate, useParams } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
+import { toast } from 'sonner';
 const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn, deleteLink }) => {
   const { isAuthenticated, user } = useSelector(state => state.auth)
   const dispatch = useDispatch()
@@ -38,19 +38,19 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
         await api.delete(`/api/auth/${params.id}`, { withCredentials: true });
         dispatch(logout())
         localStorage.clear()
-        toast.success("Account deleted successfully", {
-          theme: "colored",
-          style: { backgroundColor: "#fff", color: "#0073e6" }, // Custom blue color
-        });
+        toast.success('Account deleted successfully', {
+          theme: 'colored',
+          style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
+      });
   
         // Redirect user after account deletion
         navigate("/login");
       }
     } catch (error) {
-      toast.error("Deletion failed", {
-        theme: "colored",
-        style: { backgroundColor: "#fff", color: "#0073e6" },
-      });
+      toast.success('OOPS! Account deletion failed', {
+        theme: 'colored',
+        style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
+    });
     } finally {
       setIsDeleteOn(false);
       setIsLoading(false);

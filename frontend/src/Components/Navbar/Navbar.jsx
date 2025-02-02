@@ -10,8 +10,8 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../../api';
 import { logout } from '../../store/slices/authSlice';
 import Search from '../Search/Search';
-import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
+import { toast } from 'sonner';
 
 const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const [formOn, setFormOn] = useState(false);
@@ -56,14 +56,14 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
       localStorage.clear()
       navigate('/login');
       console.log(response.data.message)
-      toast.success('Logout successfull', {
-        theme: 'colored',
-        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-    });
+    toast.success('YAY! Logout successfull', {
+      theme: 'colored',
+      style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
+  });
     } catch (error) {
-      toast.error('Logout failed', {
+      toast.error('OOPS! Logout failed', {
         theme: 'colored',
-        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+        style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
     });
       console.error(error);
     }

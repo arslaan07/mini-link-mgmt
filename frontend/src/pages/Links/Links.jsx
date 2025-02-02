@@ -11,6 +11,7 @@ import DeleteModal from '../../Components/DeleteModal/DeleteModal';
 import Loader from '../../Components/Loader/Loader';
 import Pagination from '../../Components/Pagination/Pagination';
 import LinkModal from '../../Components/LinkModal/LinkModal';
+import { toast } from 'sonner';
 
 const dummyLinks = [
     {
@@ -121,7 +122,11 @@ const Links = () => {
       };
       const handleCopy = (text) => {
         navigator.clipboard.writeText(`https://mini-link-mgmt.onrender.com/api/urls/${text}`);
-        alert('Link copied to clipboard!');
+        toast.success('YAY! Link copied', {
+            theme: 'colored',
+            style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' },
+            position: 'top-center'
+        });
       };
 
   const handleEdit = async (linkId) => {

@@ -3,8 +3,7 @@ import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import styles from './App.module.css';
 import { useSelector } from 'react-redux';
 import Loader from './Components/Loader/Loader';
-import Search from './Components/Search/Search';
-import { ToastContainer, toast } from 'react-toastify';
+import { Toaster } from 'sonner';
 
 // Lazy-loaded components
 const SignUp = lazy(() => import('./pages/SignUp/SignUp'));
@@ -31,7 +30,7 @@ const App = () => {
         <Route path='/:id/analytics' element={<Analytics />} />
       </Routes>
       </Suspense>
-      <ToastContainer position="bottom-left"/>
+      <Toaster position="bottom-left"/>
       </>
   )
 }
