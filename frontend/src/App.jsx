@@ -14,7 +14,7 @@ const Links = lazy(() => import('./pages/Links/Links'));
 const Settings = lazy(() => import('./pages/Settings/Settings'));
 const Analytics = lazy(() => import('./pages/Analytics/Analytics'));
 const App = () => {
-  const user = useSelector(state => state.auth.user)
+  const { isAuthenticated, user } = useSelector(state => state.auth)
   return (
     <>
     <Link to={user === null ? '/login' : `${user.id}/dashboard`} className={styles.logo}>
@@ -23,13 +23,12 @@ const App = () => {
       <Suspense fallback={<div className={styles.loader}><Loader /></div>}>
       <Routes>
         <Route path="/" element={<Navigate to="/login" replace />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/login' element={<LogIn />} />
+        <Route path='/signup' element={isAuthenticated ? <Navigate to={`/${user.id}/dashboard`} /> : <SignUp />} />
+        <Route path='/login' element={isAuthenticated ? <Navigate to={`/${user.id}/dashboard`} /> : <LogIn />} />
         <Route path='/:id/dashboard' element={<Dashboard />} />
         <Route path='/:id/links' element={<Links />} />
         <Route path='/:id/settings' element={<Settings />} />
         <Route path='/:id/analytics' element={<Analytics />} />
-        {/* <Route path='/:id/search' element={<Search />} /> */}
       </Routes>
       </Suspense>
       <ToastContainer position="bottom-left"/>

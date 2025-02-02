@@ -24,7 +24,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
-  const user = useSelector(state => state.auth.user);
+  const { isAuthenticated, user } = useSelector(state => state.auth);
 
   const handleSearch = async (e) => {
     const query = e.target.value;
@@ -79,7 +79,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   };
 
   // if (!user) {
-  //   return( div className={styles.loader}><Loader /></div>)
+  //   return div className={styles.loader}><Loader /></div>
   // }
   if(isLoading) {
    return <div className={styles.loader}>

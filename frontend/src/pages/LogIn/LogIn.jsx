@@ -11,11 +11,6 @@ const LogIn = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const { isAuthenticated, user } = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (isAuthenticated) {
-      navigate(`/${user.id}/dashboard`);
-    }
-  }, [isAuthenticated, navigate]);
     const [formData, setFormData] = useState({
         email: "",
         password: "",

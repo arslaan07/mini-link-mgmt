@@ -5,7 +5,14 @@ import api from '../../../api';
 import { useNavigate, useParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
 import Loader from '../Loader/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../../store/slices/authSlice';
 const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn, deleteLink }) => {
+  const { isAuthenticated, user } = useSelector(state => state.auth)
+  const dispatch = useDispatch()
+  if(!isAuthenticated) {
+    navigate('/login')
+  }
   const [isLoading, setIsLoading] = useState(false)
   const params = useParams()
   const navigate = useNavigate()
@@ -15,36 +22,41 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
   if(isDeleteOn)
     setIsDeleteOn(!isDeleteOn)
   }
+
   const handleDelete = async () => {
     try {
-      if(deleteFormOn) {
-      const response = await api.delete(`/api/urls/${deleteLink}`, { withCredentials: true })
-      console.log(response)
-      setDeleteFormOn(!deleteFormOn)
-    }
-    if(isDeleteOn) {
-      try {
-        setIsLoading(true)
-        const response = await api.delete(`/api/auth/${params.id}`, { withCredentials: true });
-        toast.success('Account deleted successfully', {
-                                    theme: 'colored',
-                                    style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-                                });
+      setIsLoading(true);
+  
+      // Delete URL if `deleteFormOn` is active
+      if (deleteFormOn) {
+        await api.delete(`/api/urls/${deleteLink}`, { withCredentials: true });
+        setDeleteFormOn(false);
+      }
+  
+      // Delete Account if `isDeleteOn` is active
+      if (isDeleteOn) {
+        await api.delete(`/api/auth/${params.id}`, { withCredentials: true });
+        dispatch(logout())
+        localStorage.clear()
+        toast.success("Account deleted successfully", {
+          theme: "colored",
+          style: { backgroundColor: "#fff", color: "#0073e6" }, // Custom blue color
+        });
+  
+        // Redirect user after account deletion
+        navigate("/login");
+      }
     } catch (error) {
-        toast.error('Account deletion failed', {
-                                theme: 'colored',
-                                style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
-                            });
+      toast.error("Deletion failed", {
+        theme: "colored",
+        style: { backgroundColor: "#fff", color: "#0073e6" },
+      });
     } finally {
-        setIsDeleteOn(!isDeleteOn)
-        setIsLoading(false);
+      setIsDeleteOn(false);
+      setIsLoading(false);
     }
-        navigate('/login')
-    }
-    } catch (error) {
-      console.error(error)
-    }
-  }
+  };
+  
   if(isLoading) {
     return <div className={styles.loader}><Loader /></div>
   }
