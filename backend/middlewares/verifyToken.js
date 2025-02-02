@@ -1,8 +1,8 @@
 const jwt = require('jsonwebtoken');
 
 const verifyToken = (req, res, next) => {
-  console.log('Cookies received:', req.cookies);
-  console.log('Headers:', req.headers);
+  // console.log('Cookies received:', req.cookies);
+  // console.log('Headers:', req.headers);
   
   const token = req.cookies.token;
   if (!token) {

@@ -121,7 +121,7 @@ const Links = () => {
         return <span className={badgeClass}>{status}</span>;
       };
       const handleCopy = (text) => {
-        navigator.clipboard.writeText(`https://mini-link-mgmt.onrender.com/api/urls/${text}`);
+        navigator.clipboard.writeText(`https://mini-link-mgmt.onrender.com/${text}`);
         toast.success('YAY! Link copied', {
             theme: 'colored',
             style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' },

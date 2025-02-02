@@ -2,10 +2,11 @@ const express = require("express");
 const app = express();
 const authRoutes = require("./routes/auth");
 const urlRoutes = require("./routes/url");
-const getUrlRoute = require("./routes/getUrl");
 const connectDB = require("./connection/mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const Url = require("./models/url");
+const { parseUserAgent } = require("./utils/userAgentParser");
 require("dotenv").config();
 
 connectDB();
@@ -29,7 +30,38 @@ app.use(cookieParser());
 
 app.use("/api/auth", authRoutes);
 app.use("/api/urls", urlRoutes);
-app.use("/:shortUrl", getUrlRoute)
+app.use("/:shortUrl", async (req, res) => {
+  try {
+    const { shortUrl } = req.params;
+    // console.log(shortUrl);
+    // console.log(req.params)
+    const url = await Url.findOne({ shortUrl: shortUrl });
+    if (!url) {
+      return res.status(404).json({
+        success: false,
+        message: "Short link not found",
+      });
+    }
+    const userAgent = req.headers["user-agent"];
+    const { device, os } = parseUserAgent(userAgent);
+    url.clickData.push({
+      ipAddress: req.ip || req.headers["x-forwarded-for"] || "Unknown",
+      timestamp: new Date(),
+      userAgent,
+      device,
+      os,
+    });
+    await url.save();
+    // console.log(url.originalUrl)
+    res.redirect(url.originalUrl);
+    // res.json("hello world")
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+});
 function keepServerAlive() {
   if (process.env.RENDER_EXTERNAL_URL) {
       setInterval(async () => {
