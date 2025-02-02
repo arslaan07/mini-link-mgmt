@@ -22,6 +22,7 @@ const App = () => {
       </Link>
       <Suspense fallback={<div className={styles.loader}><Loader /></div>}>
       <Routes>
+        <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path='/signup' element={<SignUp />} />
         <Route path='/login' element={<LogIn />} />
         <Route path='/:id/dashboard' element={<Dashboard />} />
