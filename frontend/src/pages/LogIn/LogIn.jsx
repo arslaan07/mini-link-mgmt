@@ -5,7 +5,9 @@ import api from '../../../api';
 import { useDispatch } from 'react-redux';
 import { login } from '../../store/slices/authSlice'
 import { toast } from 'react-toastify';
+import Loader from '../../Components/Loader/Loader';
 const LogIn = () => {
+  const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
     const [formData, setFormData] = useState({
@@ -20,6 +22,7 @@ const LogIn = () => {
       };
       const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true)
         try {
             const newErrors = {};
         if (!formData.email.trim()) {
@@ -57,7 +60,13 @@ const LogIn = () => {
                               });
             console.log(error)
         }
+        finally {
+          setIsLoading(false)
+        }
       };
+      if(isLoading) {
+        return <div className={styles.loader}><Loader /></div>
+      }
   return (
     <div className={styles.container}>
       <div className={styles.heroImg}>
