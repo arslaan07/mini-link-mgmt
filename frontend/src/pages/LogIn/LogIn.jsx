@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styles from './LogIn.module.css'
 import { Link, useNavigate } from 'react-router-dom'
 import api from '../../../api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { login } from '../../store/slices/authSlice'
 import { toast } from 'react-toastify';
 import Loader from '../../Components/Loader/Loader';
@@ -10,6 +10,12 @@ const LogIn = () => {
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch()
   const navigate = useNavigate()
+  const { isAuthenticated, user } = useSelector((state) => state.auth);
+  useEffect(() => {
+    if (isAuthenticated) {
+      navigate(`/${user.id}/dashboard`);
+    }
+  }, [isAuthenticated, navigate]);
     const [formData, setFormData] = useState({
         email: "",
         password: "",
@@ -51,7 +57,7 @@ const LogIn = () => {
                                   theme: 'colored',
                                   style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
                               });
-          navigate(`/${response.data.user.id}/dashboard`)
+          // navigate(`/${response.data.user.id}/dashboard`)
         }
         } catch (error) {
           toast.error(error.message, {
