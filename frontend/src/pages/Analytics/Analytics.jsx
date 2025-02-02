@@ -60,7 +60,7 @@ const Analytics = () => {
     useEffect(() => {
         const fetchAnalytics = async () => {
             try {
-                const response = await api.get('/api/urls/analytics', { 
+                const response = await api.get('api/urls/analytics', { 
                     params: {page: currentPage, limit: linksPerPage},
                     withCredentials: true 
                 });

@@ -34,10 +34,11 @@ const LogIn = () => {
         setErrors(newErrors);
     
         // If no errors, proceed to submit the form
-        if (Object.keys(newErrors).length === 0) {
+        if (Object.keys(newErrors).length === 0) {  
           const response = await api.post('api/auth/login', formData, { withCredentials: true });
           console.log(response)
-          
+          console.log('Login response headers:', response.headers);
+          console.log('Cookies:', document.cookie);
           dispatch(login({
             user: response.data.user,
           }))
