@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Routes, Route, Link, Navigate } from 'react-router-dom';
 import styles from './App.module.css';
 import { useSelector } from 'react-redux';
 import Loader from './Components/Loader/Loader';
