@@ -43,7 +43,7 @@
     align-items: center;
     width: 40px; 
     height: 40px; 
-    margin-left: 1.5rem;
+    margin-left: 0.3rem;
     color: #923E0E; 
     font-weight: bold;
     font-size: 16px;
@@ -96,8 +96,8 @@
     border-radius: 4px;
     border: 1px solid #ECECF2;
     position: absolute;
-    top: 70px;
-    right: 64px;
+    top: 60px;
+    right: 54px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -121,7 +121,7 @@
     padding: 8px 16px;
     background: #f5f5f5;
     border-radius: 8px;
-    width: 270px;
+    width: 220px;
     height: 44px;
     position: relative;
     font-size: 24px;

@@ -1,10 +1,10 @@
 .container {
     display: flex;
-
 }
 .main {
     display: flex;
     flex-direction: column;
+
 }
 .dashboard {
     flex: 1;
@@ -16,6 +16,7 @@
     color: #3B3C51;
     flex-direction: column;
     padding-top: 0.5rem;
+
 }
 .scroll {
     width: 100%;
@@ -29,13 +30,11 @@
   margin-top: 2rem;
   overflow: hidden;
   font-size: 14px;
-
 }
 
 .tableHeader {
   background: #f3f7fd;
   text-align: left;
-
 }
 
 .tableHeader th {
@@ -48,6 +47,7 @@
 
 .tableRow {
   border-bottom: 1px solid #e2e8f0;
+  
 }
 
 .tableRow td {
@@ -96,7 +96,7 @@
 
 
 .truncatedLink {
-    max-width: 150px;
+    max-width: 100px;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -109,7 +109,7 @@
     gap: 8px;
   }
   .createdAt {
-    width: 158px;
+    min-width: 158px;
   }
   .edit, .delete {
     font-size: 20px;
@@ -147,6 +147,7 @@
   .pagination {
     /* background-color: red; */
     width: 100%;
+    padding-bottom: 1rem;
   }
   /* TruncatedRemark.module.css */
 .remarkContainer {
@@ -274,6 +275,7 @@
       
     .container {
         overflow-x: hidden;
+        padding-bottom: 10px;
     }
     .tableContainer {
       width: 500px;

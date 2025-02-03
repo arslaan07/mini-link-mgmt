@@ -153,7 +153,10 @@ const Analytics = () => {
         </table>
       </div>
       <div className={styles.pagination}>
-          <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      {
+        totalPages > 1 &&
+        <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+      }
         </div>
       </div>
     ) : (

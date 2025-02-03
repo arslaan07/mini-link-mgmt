@@ -19,6 +19,7 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
     console.log(editFormOn)
+    // console.log('formOn: ', formOn)
     useEffect(() => {
         if (response && response !== 'undefined' && response.expirationDate === null) {
             setIsExpirationOn(false);
@@ -84,6 +85,7 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
                         theme: 'colored',
                         style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
                     });
+                    return
                 }
                 if (typeof setEditFormOn === 'function') {
                     setEditFormOn(false);
@@ -106,8 +108,10 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
     };
 
     const handleCreateForm = () => {
+        // console.log(typeof setFormOn)
         if(typeof setFormOn === 'function') 
         setFormOn(false);
+    // console.log("formOn: ", formOn)
         if(typeof setEditFormOn === 'function')
         setEditFormOn(false);
     };

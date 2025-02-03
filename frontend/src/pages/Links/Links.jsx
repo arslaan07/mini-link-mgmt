@@ -55,8 +55,8 @@ const dummyLinks = [
     );
   };
   const TruncatedRemark = ({ remark }) => {
-    const truncatedText = remark.length > 35 
-      ? `${remark.substring(0, 35)}...` 
+    const truncatedText = remark.length > 25 
+      ? `${remark.substring(0, 25)}...` 
       : remark;
   
     return (
@@ -66,7 +66,7 @@ const dummyLinks = [
       </div>
     );
   };
-const linksPerPage = 6
+const linksPerPage = 8
 const Links = () => {
     const [links, setLinks] = useState()
     const [editFormOn, setEditFormOn] = useState(false)
@@ -236,7 +236,10 @@ const Links = () => {
               </table>
               </div>
               <div className={styles.pagination}>
-                <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+                {
+                    totalPages > 1 &&
+                    <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+                }
               </div>
             </div>
           ) : (

@@ -124,6 +124,7 @@
   .pagination {
     /* background-color: red; */
     width: 100%;
+    padding-bottom: 1rem;
   }
   .noDataMessage {
     display: flex;
@@ -137,12 +138,16 @@
     padding: 20px;
   }
   @media (max-width: 768px) {
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
-      
+      }  */
     .container {
         overflow-x: hidden;
+        padding-bottom: 10px;
+        background-color: #f1f1f1;
+    }
+    .dashboard {
+        height: 100%;
     }
     .tableContainer {
       width: 500px;
@@ -155,6 +160,8 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        height: 100vh;
+
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -172,9 +179,9 @@
       }
   }
   @media (max-width: 568px) {
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
+      } */
       
     .container {
         overflow-x: hidden;
@@ -207,9 +214,9 @@
       }
   }
   @media (max-width: 478px) {
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
+      } */
       
     .container {
         overflow-x: hidden;
@@ -242,9 +249,9 @@
       }
   }
   @media (max-width: 400px) {
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
+      } */
       
     .container {
         overflow-x: hidden;
@@ -277,9 +284,9 @@
       }
   }
   @media (max-width: 368px) {
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
+      } */
       
     .container {
         overflow-x: hidden;

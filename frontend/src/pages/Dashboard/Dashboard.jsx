@@ -87,7 +87,7 @@ const Dashboard = () => {
         // Clicks by Device
         const deviceClicks = {};
         allClicks.forEach((click) => {
-          const device = click.device;
+          const device = click.device[0].toUpperCase() + click.device.slice(1, click.device.length)
           deviceClicks[device] = (deviceClicks[device] || 0) + 1;
         });
 
@@ -185,11 +185,14 @@ const Dashboard = () => {
               </ResponsiveContainer>
 
               {/* Pagination Component */}
+              {
+                    totalPages > 1 &&
               <Pagination
                 currentPage={currentPage}
                 totalPages={totalPages}
                 setCurrentPage={setCurrentPage} // Make sure this is correctly passed
               />
+              }
             </div>
 
             {/* Click Devices */}

@@ -18,17 +18,17 @@ const App = () => {
   const { isAuthenticated, user } = useSelector(state => state.auth)
   const isMobile = useMediaQuery({ maxWidth: 768 })
   const [isOpen, setIsOpen] = useState(false);
-  console.log(isOpen)
+  const [formOn, setFormOn] = useState(false);
   return (
     <>
     <Link to={user === null ? '/login' : `${user.id}/dashboard`} className={styles.logo}>
         <img className={styles.logoImg} src="/images/LogoImg.png" alt="Logo" />
       </Link>
-      {isMobile && isAuthenticated && <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} />}
+      {isMobile && isAuthenticated && <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} formOn={formOn} setFormOn={setFormOn} />}
       <Suspense fallback={<div className={styles.loader}><Loader /></div>}>
       
       <Routes>
-      {!isOpen &&
+      {(!isOpen && !formOn) &&
       <>
         <Route path="/" element={<Navigate to="/login" replace />} />
         <Route path='/signup' element={isAuthenticated ? <Navigate to={`/${user.id}/dashboard`} /> : <SignUp />} />
