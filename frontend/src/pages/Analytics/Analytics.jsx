@@ -124,6 +124,7 @@ const Analytics = () => {
   ) : (
     links.length > 0 ? (
       <div className={styles.dashboard}>
+        <div className={styles.scroll}>
         <table className={styles.tableContainer}>
           <thead className={styles.tableHeader}>
             <tr>
@@ -150,7 +151,8 @@ const Analytics = () => {
             ))}
           </tbody>
         </table>
-        <div className={styles.pagination}>
+      </div>
+      <div className={styles.pagination}>
           <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
         </div>
       </div>

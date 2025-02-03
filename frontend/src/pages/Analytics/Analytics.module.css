@@ -17,6 +17,10 @@
     flex-direction: column;
     padding-top: 0.5rem;
 }
+.scroll {
+    width: 100%;
+    justify-items: center;
+}
 .tableContainer {
   width: 94%;
   border-collapse: collapse;
@@ -25,7 +29,6 @@
   margin-top: 2rem;
   overflow: hidden;
   font-size: 14px;
-
 }
 
 .tableHeader {
@@ -133,4 +136,178 @@
     text-align: center;
     padding: 20px;
   }
-  
+  @media (max-width: 768px) {
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 650px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 568px) {
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 530px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 478px) {
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 450px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 400px) {
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 375px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 368px) {
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 330px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }

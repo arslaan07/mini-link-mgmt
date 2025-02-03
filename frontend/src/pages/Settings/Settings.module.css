@@ -123,3 +123,183 @@
     width: 83vw;
     height: 88vh;
   }
+  @media (max-width: 768px) {
+    .container {
+        max-width: 758px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        width: 758px;
+        overflow-x: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 410px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 668px) {
+    .container {
+        max-width: 658px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        width: 658px;
+        overflow-x: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 350px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 568px) {
+    .container {
+        max-width: 558px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        width: 558px;
+        overflow-x: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 350px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 478px) {
+    .container {
+        max-width: 468px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        width: 468px;
+        overflow-x: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 300px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 400px) {
+    .container {
+        max-width: 390px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        width: 390px;
+        overflow: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 240px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }
+  @media (max-width: 368px) {
+    .container {
+        max-width: 358px;
+        overflow-x: hidden;
+    }
+    .dashboard {
+        max-width: 358px;
+        overflow-x: hidden;
+    }
+    .form {
+        padding-top: 14vh;
+        transform: translate(0%, 0%);
+      }
+      .formGroup label {
+        min-width: 80px;
+      }
+      .formGroup input {
+        width: 200px;
+        height: 32px;
+      }  
+      .btn {
+        padding: 0.4rem;
+        font-size: 0.9rem;
+       
+      }
+      .loader {
+        width: 100vw;
+        height: 100vh;
+      }
+  }

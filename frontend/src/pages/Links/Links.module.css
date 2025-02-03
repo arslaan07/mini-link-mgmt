@@ -343,7 +343,7 @@
       left: 50%;
       transform: translateX(-50%);
       width: 90vw;
-      max-width: 300px;
+      max-width: 330px;
     }
     .createdAt {
         min-width: 120px;
