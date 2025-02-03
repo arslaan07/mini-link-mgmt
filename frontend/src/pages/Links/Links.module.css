@@ -225,8 +225,7 @@
     }
       
   }
- 
-  @media (max-width: 368px) {
+  @media (max-width: 568px) {
     .fullRemark {
       left: 50%;
       transform: translateX(-50%);
@@ -238,13 +237,128 @@
       }
     .container {
         overflow-x: hidden;
+        background-color: #f1f1f1;
+    }
+    /* .tableContainer {
+      width: 500px;
+    } */
+    .scroll {
+        all: unset;
+        width: 530px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+      
+  }
+  @media (max-width: 478px) {
+    .fullRemark {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 300px;
+    }
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
     }
     .tableContainer {
       width: 500px;
     }
     .scroll {
+
         all: unset;
-        width: 368px;
+        width: 450px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+      
+  }
+  @media (max-width: 400px) {
+    .fullRemark {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 300px;
+    }
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 375px;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 0px 10px;
+        /* background-color: red; */
+    }
+    .scroll::-webkit-scrollbar {
+        height: 8px; /* Set the height for horizontal scrollbar */
+    }
+    .scroll::-webkit-scrollbar-track {
+        background: grey; /* Make the track transparent to remove default scrollbar icons */
+    }
+    .scroll::-webkit-scrollbar-thumb {
+        background: #ffffff;
+        border-radius: 50px;
+    }
+      
+  }
+ 
+  @media (max-width: 368px) {
+    .fullRemark {
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90vw;
+      max-width: 300px;
+    }
+    .createdAt {
+        min-width: 120px;
+      }
+      
+    .container {
+        overflow-x: hidden;
+    }
+    .tableContainer {
+      width: 500px;
+    }
+    .scroll {
+
+        all: unset;
+        width: 330px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
