@@ -4,6 +4,7 @@ const authRoutes = require("./routes/auth");
 const urlRoutes = require("./routes/url");
 const connectDB = require("./connection/mongoose");
 const cookieParser = require("cookie-parser");
+const axios = require("axios");
 const cors = require("cors");
 const Url = require("./models/url");
 const { parseUserAgent } = require("./utils/userAgentParser");

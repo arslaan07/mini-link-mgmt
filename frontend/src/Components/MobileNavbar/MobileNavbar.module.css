@@ -1,0 +1,222 @@
+.navbar {
+    width: 100%;
+    background-color: white;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+  
+  .topSection {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    height: 12vh;
+  }
+  
+  .logoSection {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  .menuButton {
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+  }
+  
+  .menuButton:hover {
+    background-color: #f3f4f6;
+    cursor: pointer;
+  }
+  
+  .actionsContainer {
+    display: flex;
+    gap: 1rem;
+    padding: 0 1rem 1rem 1rem;
+    max-height: 10vh;
+  }
+  
+  .createButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    background-color: #2563eb;
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    white-space: nowrap;
+  }
+  
+  .createButton:hover {
+    background-color: #1d4ed8;
+  }
+  
+  .searchContainer {
+    position: relative;
+    flex: 1;
+  }
+  
+  .searchInput {
+    width: 100%;
+    padding: 0.5rem 0.75rem;
+    padding-left: 2.5rem;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.5rem;
+  }
+  
+  .searchInput:focus {
+    outline: none;
+    border-color: #2563eb;
+    ring: 2px solid #2563eb;
+  }
+  
+  .searchIcon {
+    position: absolute;
+    left: 0.75rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #9ca3af;
+  }
+  .menuContainer {
+    height: 78vh;
+  }
+  .menuContent {
+    border-top: 1px solid #e5e7eb;
+  }
+  
+  .menuLinks {
+    padding: 1rem;
+  }
+  
+  .menuLink {
+    display: block;
+    padding: 0.5rem 0;
+    color: inherit;
+    text-decoration: none;
+  }
+  
+  .menuLink:hover {
+    color: #2563eb;
+  }
+  .greetings {
+    display: flex;
+    gap: 1px;
+  }
+  .wishes {
+    font-weight: bold;
+  }
+  .formatDateAndTime {
+    line-height: 16px;
+    color: #878BA9;
+    font-size: 12px;
+    padding-left: 2px;
+    /* background-color: red; */
+  }
+  .btn {
+    background: #1B48DA;
+    padding: 4px 8px;
+    font-size: 14px;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    cursor: pointer;
+    border: none;
+  }
+  .btn:hover {
+    background-color: #0073e6;
+  }
+ .search { 
+    font-size: 16px;
+    border-radius: 6px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    cursor: pointer;
+    /* background-color: red; */
+ }
+
+ .searchInput {
+    width: 100%;
+    height: 100%;
+    padding: 12px 8px;
+    /* background-color: red; */
+    text-align: start;
+    padding-left: 30px;
+ }
+ .menuContent {
+    /* width: 17vw; */
+    /* background: brown; */
+    height: 60vh;
+    padding-top: 5vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    /* z-index: 110; */
+    overflow-y: hidden;
+}
+.dashboard, .links, .analytics, .settings, .logout {
+    all:unset;
+    text-align: left; /* This will center the text within each div */
+    width: 50%; /* Ensures full width for text alignment */
+    /* background-color: aqua; */
+    padding: 8px 10px;
+    padding-left: 1.5rem;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 24px;
+    font-weight: 600;
+    border: 2px solid transparent;
+    cursor: pointer;
+  }
+  /* .analytics {
+    margin-bottom: 0.4rem;
+  } */
+  /* .settings {
+    border: 2px solid #F6F6F9;
+    padding: 1.5rem 0;
+    padding-left: 2rem;
+    outline: none;
+    width: 100%;
+  } */
+  .dashboard:hover, .links:hover, .analytics:hover, .settings:hover, .logout:hover {
+    color: #1B48DA;
+    border: 2px solid #F3F7FD;
+    border-radius: 8px;
+    background: #F3F7FD;
+    transform: scale(1.03);
+    transition: all 0.3s ease;
+  }
+  /* .settings:hover {
+    width: 90%;
+    padding-left: 1.5rem;
+    
+  } */
+ .active {
+  background-color: #F3F7FD;
+  border-radius: 6px;
+  padding: 1rem 0;
+ }
+ .settings.active {
+  padding: 1.5rem 0;
+  padding-left: 2.5rem;
+ }
+ .logo {
+  width: 17vw;
+  height: 13vh;
+  position: absolute;
+  top: 0;
+  cursor: pointer;
+ }
+ .logoImg {
+  width: 100%;
+  height: 100%;
+ }
+.logout {
+
+}

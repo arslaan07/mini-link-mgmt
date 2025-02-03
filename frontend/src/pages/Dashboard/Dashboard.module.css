@@ -85,3 +85,20 @@
     height: 88vh;
   }
   
+  @media (max-width: 768px) {
+    
+.container {
+  padding-top: 5vh;
+  /* background-color: brown; */
+}
+.heading {
+  /* background-color: aqua; */
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 1rem;
+  gap: 1rem;
+  width: 90%;
+  margin: auto;
+}
+  }
