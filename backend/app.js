@@ -63,6 +63,9 @@ app.use("/:shortUrl", async (req, res) => {
     });
   }
 });
+app.get('/', (req, res) => {
+  res.send('Hello World!');
+});
 function keepServerAlive() {
   if (process.env.RENDER_EXTERNAL_URL) {
       setInterval(async () => {

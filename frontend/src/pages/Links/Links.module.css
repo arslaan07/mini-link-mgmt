@@ -244,7 +244,7 @@
     }
     .scroll {
         all: unset;
-        width: 300px;
+        width: 200px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
