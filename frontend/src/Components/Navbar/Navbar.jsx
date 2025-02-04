@@ -12,6 +12,7 @@ import { logout } from '../../store/slices/authSlice';
 import Search from '../Search/Search';
 import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
+import useLogout from '../../hooks/useLogout';
 
 const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const [formOn, setFormOn] = useState(false);
@@ -19,7 +20,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const [searchQuery, setSearchQuery] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
-  const [isLoading, setIsLoading] = useState(false);
+  const { isLoading, handleLogout } = useLogout()
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -48,29 +49,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      setIsLoading(true); // Show loading spinner while logout is in progress
-      const response = await api.get('/api/auth/logout', { withCredentials: true });
-      dispatch(logout());
-      localStorage.clear()
-      navigate('/login');
-      console.log(response.data.message)
-    toast.success('YAY! Logout successfull', {
-      theme: 'colored',
-      style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
-  });
-    } catch (error) {
-      toast.error('OOPS! Logout failed', {
-        theme: 'colored',
-        style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
-    });
-      console.error(error);
-    }
-    finally {
-      setIsLoading(false); // Hide loading spinner after logout is completed
-    }
-  };
+
 
   // Function to clear search
   const clearSearch = () => {

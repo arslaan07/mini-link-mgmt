@@ -385,6 +385,7 @@
         bottom: 0;
         width: 100%;
         left: 0;
+        padding-bottom: 2px;
       }
       .inputContainer {
         position: relative;

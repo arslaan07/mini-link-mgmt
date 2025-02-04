@@ -67,3 +67,38 @@
     width: 100vw;
     height: 100vh;
   }
+@media (max-width: 568px) {
+    .container {
+        width: 420px;
+    }
+    .button {
+        width: 169px;
+    }
+}
+@media (max-width: 468px) {
+    .container {
+        width: 380px;
+    }
+    .button {
+        width: 149px;
+    }
+}
+@media (max-width: 400px) {
+    .container {
+        width: 360px;
+    }
+    .button {
+        width: 139px;
+    }
+}
+@media (max-width: 368px) {
+    .container {
+        width: 320px;
+    }
+    .button {
+        width: 129px;
+    }
+    .heading {
+        font-size: 16px;
+    }
+}

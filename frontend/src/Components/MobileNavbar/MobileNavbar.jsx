@@ -12,7 +12,9 @@ import { HiLink } from "react-icons/hi";
 import { FaArrowTrendUp } from "react-icons/fa6";
 import { FiSettings } from "react-icons/fi";
 import { IoMdLogOut } from "react-icons/io";
+import Loader from '../Loader/Loader';
 import LinkModal from "../LinkModal/LinkModal";
+import useLogout from "../../hooks/useLogout";
 
 // import TopBar from './components/TopBar';
 // import ActionBar from './components/ActionBar';
@@ -42,6 +44,7 @@ const TopBar = ({ setIsOpen, isOpen }) => {
 // MobileNavbar/components/ActionBar.jsx
 const ActionBar = ({formOn, setFormOn}) => {
   const [response, setResponse] = useState()
+  
   return (
     <div className={styles.actionsContainer}>
       <div onClick={() => setFormOn(!formOn)} className={styles.btn}>
@@ -92,9 +95,13 @@ const ActionBar = ({formOn, setFormOn}) => {
 const NavigationMenu = ({isOpen, setIsOpen}) => {
     const { user } = useSelector(state => state.auth)
     const id = user.id
-    
+    const { handleLogout } = useLogout()
     const handleOpen = () => {
         setIsOpen(!isOpen)
+    }
+    const handleLogoutAndOpen = () => {
+        handleOpen()
+        handleLogout()
     }
     return (
       <div className={`${styles.menuContainer} ${isOpen ? styles.open : ""}`}>
@@ -103,14 +110,19 @@ const NavigationMenu = ({isOpen, setIsOpen}) => {
           <Link onClick={handleOpen} to={`/${id}/links`} className={`${styles.links}`}><HiLink />Links</Link>
           <Link onClick={handleOpen} to={`/${id}/analytics`} className={`${styles.analytics}`}><FaArrowTrendUp />Analytics</Link>
           <Link onClick={handleOpen} to={`/${id}/settings`} className={`${styles.settings}`}><FiSettings />Settings</Link>
-          <Link onClick={handleOpen} className={`${styles.logout}`}><IoMdLogOut />Logout</Link>
+          <Link onClick={handleLogoutAndOpen} className={`${styles.logout}`}><IoMdLogOut />Logout</Link>
         </div>
       </div>
     );
   };
 
 const MobileNavbar = ({isOpen, setIsOpen, formOn, setFormOn}) => {
-  
+    const { isLoading } = useLogout()
+    if(isLoading) {
+        return <div className={styles.loader}>
+        <Loader />
+      </div>
+    }
   return (
     <nav className={styles.navbar}>
       <TopBar setIsOpen={setIsOpen} isOpen={isOpen} />
