@@ -13,11 +13,12 @@ import Search from '../Search/Search';
 import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
 import useLogout from '../../hooks/useLogout';
+import { setSearchQuery, clearSearchQuery } from '../../store/slices/urlSlice';
 
 const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const [formOn, setFormOn] = useState(false);
   const [profileOn, setProfileOn] = useState(false);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const { isLoading, handleLogout } = useLogout()
@@ -26,27 +27,30 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const dispatch = useDispatch();
   const params = useParams();
   const { isAuthenticated, user } = useSelector(state => state.auth);
-
+  const { searchQuery } = useSelector(state => state.url)
   const handleSearch = async (e) => {
     const query = e.target.value;
-    setSearchQuery(query);
-    
-    if (query.length >= 2) {
-      setIsSearching(true);
-      try {
-        const response = await api.get(`/api/urls/search?q=${query}`, {
-          withCredentials: true
-        });
-        setSearchResults(response.data.urls || []);
-      } catch (error) {
-        console.error('Search error:', error);
-        setSearchResults([]);
-      } finally {
-        setIsSearching(false);
-      }
-    } else {
-      setSearchResults(null);
-    }
+    setSearch(query);
+    dispatch(setSearchQuery({
+      searchQuery: query
+    }));
+    console.log(query);
+    // if (query.length >= 2) {
+    //   setIsSearching(true);
+    //   try {
+    //     const response = await api.get(`/api/urls/search?q=${query}`, {
+    //       withCredentials: true
+    //     });
+    //     setSearchResults(response.data.urls || []);
+    //   } catch (error) {
+    //     console.error('Search error:', error);
+    //     setSearchResults([]);
+    //   } finally {
+    //     setIsSearching(false);
+    //   }
+    // } else {
+    //   setSearchResults(null);
+    // }
   };
 
 
@@ -70,7 +74,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
       <div className={styles.container}>
         <div className={styles.greetings}>☀️
           <div className={styles.wishes}>
-            Good morning, {user.name} <br />
+            Good morning, {user.name.split(' ')[0]} <br />
             <p className={styles.formatDateAndTime}>{formatDateAndTime()}</p>
           </div>
         </div>
@@ -85,7 +89,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
             <input
               type="text"
               placeholder="Search by remarks"
-              value={searchQuery}
+              value={search}
               onChange={handleSearch}
               className={styles.searchInput}
             />

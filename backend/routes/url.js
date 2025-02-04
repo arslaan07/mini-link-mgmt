@@ -41,11 +41,19 @@ router.get("/", verifyToken, async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;  // Parse as integer
     const limit = parseInt(req.query.limit) || 10;  // Parse as integer
-    const skip = page * limit;
+    const search = req.query.search || ''
+    
     const urls = await Url.find({ createdBy: req.user.id }).sort({ createdAt: -1 })
-    const paginatedUrls = urls.slice(page * limit, (page + 1) * limit)
     const totalLinks = urls.length
-    res.status(200).json({ success: true, urls, paginatedUrls, totalLinks });
+    if(search.length > 0) {
+      const urls = await Url.find({
+         createdBy: req.user.id,
+         remarks: { $regex: search, $options: 'i' }
+      }).sort({ createdAt: -1 })
+      return res.status(200).json({ success: true, paginatedUrls: urls, totalLinks });
+    }
+    const paginatedUrls = urls.slice(page * limit, (page + 1) * limit)
+    res.status(200).json({ success: true, paginatedUrls, totalLinks, search });
   } catch (error) {
     return res.status(500).json({
       success: false,

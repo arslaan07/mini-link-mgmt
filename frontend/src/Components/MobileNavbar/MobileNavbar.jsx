@@ -29,7 +29,7 @@ const TopBar = ({ setIsOpen, isOpen }) => {
         <div className={styles.greetings}>
           ☀️
           <div className={styles.wishes}>
-            Good morning, {user.name} <br />
+            Good morning, {user.name.split(' ')[0]} <br />
             <p className={styles.formatDateAndTime}>{formatDateAndTime()}</p>
           </div>
         </div>

@@ -52,6 +52,7 @@
     font-size: 18px;
     color: black;
     font-weight: 600;
+    text-align: center;
 }
 .cross {
     position: absolute;

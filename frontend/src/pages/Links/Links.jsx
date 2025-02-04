@@ -12,6 +12,7 @@ import Loader from '../../Components/Loader/Loader';
 import Pagination from '../../Components/Pagination/Pagination';
 import LinkModal from '../../Components/LinkModal/LinkModal';
 import { toast } from 'sonner';
+import { useSelector } from 'react-redux';
 
 const dummyLinks = [
     {
@@ -66,7 +67,7 @@ const dummyLinks = [
       </div>
     );
   };
-const linksPerPage = 8
+const linksPerPage = 3
 const Links = () => {
     const [links, setLinks] = useState()
     const [editFormOn, setEditFormOn] = useState(false)
@@ -76,20 +77,23 @@ const Links = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-
-    console.log(currentPage)
+    const { searchQuery } = useSelector(state => state.url)
+    console.log(searchQuery.searchQuery)
+    // console.log(currentPage)
 
     useEffect(() => {
         let intervalId;
     
         const fetchLinks = async () => {
             try {
+                // console.log("search: ", searchQuery.searchQuery)
                 const response = await api.get('/api/urls', {
-                    params: {page: currentPage, limit: linksPerPage},
+                    params: {page: currentPage, limit: linksPerPage, search: searchQuery.searchQuery},
                     withCredentials: true });
+                    console.log(response)
                 setLinks(response.data.paginatedUrls);
                 setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
-                console.log(response.data.paginatedUrls)
+                // console.log(response.data.paginatedUrls)
             } catch (error) {
                 console.error(error);
             }
