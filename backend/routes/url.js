@@ -42,19 +42,17 @@ router.get("/", verifyToken, async (req, res) => {
     const page = parseInt(req.query.page) || 0;  // Parse as integer
     const limit = parseInt(req.query.limit) || 10;  // Parse as integer
     const search = req.query.search || '';
-    console.log('search: ', search)
+    // console.log('search: ', search)
     // Base filter condition (user's URLs)
     let filter = { createdBy: req.user.id };
 
     // Add search filter if applicable
     if (search.length > 0) {
-      filter.remarks = { 
-        $or: [
-          { remarks: { $regex: search, $options: 'i' } },
-          { originalUrl: { $regex: search, $options: 'i' } }
-        ]}
+      filter.$or = [
+        { remarks: { $regex: search, $options: 'i' } },
+        { originalUrl: { $regex: search, $options: 'i' } }
+      ];
     }
-
     // Get total count before pagination
     const totalLinks = await Url.countDocuments(filter);
 
