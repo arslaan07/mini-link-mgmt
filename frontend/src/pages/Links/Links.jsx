@@ -78,7 +78,7 @@ const Links = () => {
     const [totalPages, setTotalPages] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const { searchQuery } = useSelector(state => state.url)
-    console.log(searchQuery.searchQuery)
+    console.log(typeof searchQuery.searchQuery)
     // console.log(currentPage)
 
     useEffect(() => {

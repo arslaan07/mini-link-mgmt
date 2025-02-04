@@ -41,26 +41,41 @@ router.get("/", verifyToken, async (req, res) => {
   try {
     const page = parseInt(req.query.page) || 0;  // Parse as integer
     const limit = parseInt(req.query.limit) || 10;  // Parse as integer
-    const search = req.query.search || ''
-    
-    const urls = await Url.find({ createdBy: req.user.id }).sort({ createdAt: -1 })
-    const totalLinks = urls.length
-    if(search.length > 0) {
-      const urls = await Url.find({
-         createdBy: req.user.id,
-         remarks: { $regex: search, $options: 'i' }
-      }).sort({ createdAt: -1 })
-      return res.status(200).json({ success: true, paginatedUrls: urls, totalLinks });
+    const search = req.query.search || '';
+    console.log('search: ', search)
+    // Base filter condition (user's URLs)
+    let filter = { createdBy: req.user.id };
+
+    // Add search filter if applicable
+    if (search.length > 0) {
+      filter.remarks = { $regex: search, $options: 'i' };
     }
-    const paginatedUrls = urls.slice(page * limit, (page + 1) * limit)
-    res.status(200).json({ success: true, paginatedUrls, totalLinks, search });
+
+    // Get total count before pagination
+    const totalLinks = await Url.countDocuments(filter);
+
+    // Apply search and pagination directly in MongoDB query
+    const paginatedUrls = await Url.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(page * limit)
+      .limit((page + 1) * limit);
+
+    return res.status(200).json({ 
+      success: true, 
+      paginatedUrls, 
+      totalLinks, 
+      search 
+    });
+
   } catch (error) {
     return res.status(500).json({
       success: false,
       message: "Failed to get urls",
+      error: error.message
     });
   }
 });
+
 router.get("/clickdata", verifyToken, async (req, res) => {
   try {
     const urls = await Url.find({ createdBy: req.user.id });
