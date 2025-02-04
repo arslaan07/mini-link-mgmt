@@ -48,7 +48,11 @@ router.get("/", verifyToken, async (req, res) => {
 
     // Add search filter if applicable
     if (search.length > 0) {
-      filter.remarks = { $regex: search, $options: 'i' };
+      filter.remarks = { 
+        $or: [
+          { remarks: { $regex: search, $options: 'i' } },
+          { originalUrl: { $regex: search, $options: 'i' } }
+        ]}
     }
 
     // Get total count before pagination

@@ -14,28 +14,29 @@ import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
 import useLogout from '../../hooks/useLogout';
 import { setSearchQuery, clearSearchQuery } from '../../store/slices/urlSlice';
+import useSearch from '../../hooks/useSearch';
 
 const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
   const [formOn, setFormOn] = useState(false);
   const [profileOn, setProfileOn] = useState(false);
-  const [search, setSearch] = useState('');
+  // const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const { isLoading, handleLogout } = useLogout()
+  const { handleSearch, clearSearch, search } = useSearch()
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   const { isAuthenticated, user } = useSelector(state => state.auth);
-  const { searchQuery } = useSelector(state => state.url)
-  const handleSearch = async (e) => {
-    const query = e.target.value;
-    setSearch(query);
-    dispatch(setSearchQuery({
-      searchQuery: query
-    }));
-    console.log(query);
-    // if (query.length >= 2) {
+  // const handleSearch = async (e) => {
+  //   const query = e.target.value;
+  //   setSearch(query);
+  //   dispatch(setSearchQuery({
+  //     searchQuery: query
+  //   }));
+  //   console.log(query);
+  //   // if (query.length >= 2) {
     //   setIsSearching(true);
     //   try {
     //     const response = await api.get(`/api/urls/search?q=${query}`, {
@@ -51,15 +52,17 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
     // } else {
     //   setSearchResults(null);
     // }
-  };
+  // };
 
 
 
   // Function to clear search
-  const clearSearch = () => {
-    setSearchQuery('');
-    setSearchResults(null);
-  };
+  // const clearSearch = () => {
+  //   setSearch('');
+  //   dispatch(setSearchQuery({
+  //     searchQuery: ''
+  //   }));
+  // };
 
   // if (!user) {
   //   return div className={styles.loader}><Loader /></div>
@@ -93,7 +96,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
               onChange={handleSearch}
               className={styles.searchInput}
             />
-            {searchQuery && (
+            {search && (
               <button 
                 onClick={clearSearch} 
                 className={styles.clearSearch}
@@ -101,9 +104,9 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
                 ✕
               </button>
             )}
-            {isSearching && (
+            {/* {isSearching && (
               <div className={styles.searchingIndicator}>Searching...</div>
-            )}
+            )} */}
           </div>
         </div>
 
@@ -144,6 +147,6 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
       )}
     </>
   );
-};
 
+}
 export default Navbar;

@@ -15,6 +15,7 @@ import { IoMdLogOut } from "react-icons/io";
 import Loader from '../Loader/Loader';
 import LinkModal from "../LinkModal/LinkModal";
 import useLogout from "../../hooks/useLogout";
+import useSearch from "../../hooks/useSearch";
 
 // import TopBar from './components/TopBar';
 // import ActionBar from './components/ActionBar';
@@ -44,7 +45,7 @@ const TopBar = ({ setIsOpen, isOpen }) => {
 // MobileNavbar/components/ActionBar.jsx
 const ActionBar = ({formOn, setFormOn}) => {
   const [response, setResponse] = useState()
-  
+  const { handleSearch, clearSearch, search } = useSearch()
   return (
     <div className={styles.actionsContainer}>
       <div onClick={() => setFormOn(!formOn)} className={styles.btn}>
@@ -56,11 +57,11 @@ const ActionBar = ({formOn, setFormOn}) => {
                   <input
                     type="text"
                     placeholder="Search by remarks"
-                    // value={searchQuery}
-                    // onChange={handleSearch}
+                    value={search}
+                    onChange={handleSearch}
                     className={styles.searchInput}
                   />
-                  {/* {searchQuery && (
+                  {search && (
                     <button 
                       onClick={clearSearch} 
                       className={styles.clearSearch}
@@ -68,7 +69,7 @@ const ActionBar = ({formOn, setFormOn}) => {
                       ✕
                     </button>
                   )}
-                  {isSearching && (
+                  {/* {isSearching && (
                     <div className={styles.searchingIndicator}>Searching...</div>
                   )} */}
                 </div>

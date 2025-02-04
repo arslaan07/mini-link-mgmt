@@ -81,39 +81,75 @@ const Links = () => {
     console.log(typeof searchQuery.searchQuery)
     // console.log(currentPage)
 
+    // useEffect(() => {
+    //     let intervalId;
+    
+    //     const fetchLinks = async () => {
+    //         try {
+    //             // console.log("search: ", searchQuery.searchQuery)
+    //             const response = await api.get('/api/urls', {
+    //                 params: {page: currentPage, limit: linksPerPage},
+    //                 withCredentials: true });
+    //                 console.log(response)
+    //             setLinks(response.data.paginatedUrls);
+    //             setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
+    //             // console.log(response.data.paginatedUrls)
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    
+    //     // Fetch links immediately on component mount
+    //     fetchLinks();
+    
+    //     // Set up interval to fetch links every 5 seconds
+    //     intervalId = setInterval(fetchLinks, 5000);
+    
+    //     // Cleanup interval on component unmount
+    //     return () => clearInterval(intervalId);
+    // }, [currentPage]);
     useEffect(() => {
         let intervalId;
     
         const fetchLinks = async () => {
             try {
-                // console.log("search: ", searchQuery.searchQuery)
-                const response = await api.get('/api/urls', {
-                    params: {page: currentPage, limit: linksPerPage, search: searchQuery.searchQuery},
-                    withCredentials: true });
-                    console.log(response)
+                const params = {
+                    page: currentPage,
+                    limit: linksPerPage,
+                };
+    
+                // If there is a search query, add it to params
+                if (searchQuery.searchQuery && searchQuery.searchQuery.length > 0) {
+                    params.search = searchQuery.searchQuery;
+                }
+    
+                const response = await api.get('/api/urls', { params, withCredentials: true });
+    
                 setLinks(response.data.paginatedUrls);
                 setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
-                // console.log(response.data.paginatedUrls)
             } catch (error) {
                 console.error(error);
             }
         };
     
-        // Fetch links immediately on component mount
+        // Fetch links immediately on component mount or when searchQuery changes
         fetchLinks();
     
-        // Set up interval to fetch links every 5 seconds
-        intervalId = setInterval(fetchLinks, 5000);
+        // Only start polling if there is NO search query
+        if (searchQuery.searchQuery && searchQuery.searchQuery.length === 0) {
+            intervalId = setInterval(fetchLinks, 5000);
+        }
     
         // Cleanup interval on component unmount
         return () => clearInterval(intervalId);
-    }, [currentPage]);
+    }, [currentPage, searchQuery.searchQuery]);  // Re-run when `currentPage` or `searchQuery` changes
+    
     
     let paginatedData
     if(links && links.length > 0) {
     //  totalPages = Math.ceil(links.length / linksPerPage)
     // paginatedData = links.slice(currentPage * linksPerPage, (currentPage + 1) * linksPerPage)
-    console.log(totalPages)
+    // console.log(totalPages)
     }
     
     
