@@ -78,7 +78,7 @@ const Links = () => {
     const [totalPages, setTotalPages] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
     const { searchQuery } = useSelector(state => state.url)
-    console.log(typeof searchQuery.searchQuery)
+    // console.log(typeof searchQuery.searchQuery)
     // console.log(currentPage)
 
     // useEffect(() => {
@@ -113,16 +113,9 @@ const Links = () => {
     
         const fetchLinks = async () => {
             try {
-                const params = {
-                    page: currentPage,
-                    limit: linksPerPage,
-                };
-    
-                // If there is a search query, add it to params
-                if (searchQuery.searchQuery && searchQuery.searchQuery.length > 0) {
-                    params.search = searchQuery.searchQuery;
-                }
-    
+                const params = { page: currentPage, limit: linksPerPage };
+                
+                // Normal fetching (without search)
                 const response = await api.get('/api/urls', { params, withCredentials: true });
     
                 setLinks(response.data.paginatedUrls);
@@ -132,18 +125,56 @@ const Links = () => {
             }
         };
     
-        // Fetch links immediately on component mount or when searchQuery changes
-        fetchLinks();
+        fetchLinks();  // Fetch immediately
     
-        // Only start polling if there is NO search query
-        if (searchQuery.searchQuery && searchQuery.searchQuery.length === 0) {
+        // Polling only when there is NO search query
+        if (!searchQuery.searchQuery || searchQuery.searchQuery.length === 0) {
             intervalId = setInterval(fetchLinks, 5000);
         }
     
-        // Cleanup interval on component unmount
         return () => clearInterval(intervalId);
-    }, [currentPage, searchQuery.searchQuery]);  // Re-run when `currentPage` or `searchQuery` changes
+    }, [currentPage]);  // Only runs when `currentPage` changes (not on search)
+    const handleEdit = async (linkId) => {
+        setIsLoading(true)
+        try {
+            const response = await api.get(`/api/urls/url/${linkId}`, { withCredentials: true });
+            setResponse(response.data.url)
+            console.log(response.data.url)
+        } catch (error) {
+            console.error(error);
+        }
+        finally {
+            setIsLoading(false)
+        }
+        console.log(editFormOn)
+        setEditFormOn(!editFormOn)
+      };
     
+      const handleDelete = (linkId) => {
+        setDeleteLink(linkId)
+        setDeleteFormOn(!deleteFormOn)
+      };
+    useEffect(() => {
+        const fetchSearchResults = async () => {
+            if (!searchQuery.searchQuery || searchQuery.searchQuery.length === 0) return;
+            
+            try {
+                const response = await api.get('/api/urls', { 
+                    params: { search: searchQuery.searchQuery }, 
+                    withCredentials: true 
+                });
+    
+                setLinks(response.data.paginatedUrls);
+                setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
+            } catch (error) {
+                console.error(error);
+            }
+        };
+    
+        fetchSearchResults();
+    }, [searchQuery.searchQuery, handleDelete, handleEdit]);  // Only runs when `searchQuery` changes
+    
+  
     
     let paginatedData
     if(links && links.length > 0) {
@@ -169,26 +200,7 @@ const Links = () => {
         });
       };
 
-  const handleEdit = async (linkId) => {
-    setIsLoading(true)
-    try {
-        const response = await api.get(`/api/urls/url/${linkId}`, { withCredentials: true });
-        setResponse(response.data.url)
-        console.log(response.data.url)
-    } catch (error) {
-        console.error(error);
-    }
-    finally {
-        setIsLoading(false)
-    }
-    console.log(editFormOn)
-    setEditFormOn(!editFormOn)
-  };
-
-  const handleDelete = (linkId) => {
-    setDeleteLink(linkId)
-    setDeleteFormOn(!deleteFormOn)
-  };
+ 
   const checkStatus = (d) => {     
     let currentDate = new Date()  
     let expiryDate = new Date(d)   

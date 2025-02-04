@@ -138,6 +138,13 @@
     padding: 20px;
   }
   @media (max-width: 768px) {
+    .noDataMessage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75vh;
+        width: 100vw;
+    }
     /* .createdAt {
         min-width: 120px;
       }  */

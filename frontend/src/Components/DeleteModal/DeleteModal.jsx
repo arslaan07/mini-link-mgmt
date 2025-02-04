@@ -31,6 +31,10 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
       if (deleteFormOn) {
         await api.delete(`/api/urls/${deleteLink}`, { withCredentials: true });
         setDeleteFormOn(false);
+        toast.success('Link deleted successfully', {
+          theme: 'colored',
+          style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
+      });
       }
   
       // Delete Account if `isDeleteOn` is active
@@ -52,6 +56,7 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
         style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
     });
     } finally {
+      if(typeof setIsDeleteOnDelete == 'function')
       setIsDeleteOn(false);
       setIsLoading(false);
     }

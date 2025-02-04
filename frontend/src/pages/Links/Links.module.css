@@ -159,7 +159,7 @@
   .fullRemark {
     display: none;
     position: absolute;
-    top: -100%;
+    top: -150%;
     left: 0;
     background: white;
     border: 1px solid #e0e0e0;
@@ -189,6 +189,13 @@
   }
   
   @media (max-width: 768px) {
+    .noLinksMessage {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 75vh;
+        width: 100vw;
+    }
     .fullRemark {
       left: 50%;
       transform: translateX(-50%);
