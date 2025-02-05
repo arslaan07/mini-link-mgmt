@@ -12,7 +12,8 @@ import Loader from '../../Components/Loader/Loader';
 import Pagination from '../../Components/Pagination/Pagination';
 import LinkModal from '../../Components/LinkModal/LinkModal';
 import { toast } from 'sonner';
-import { useSelector } from 'react-redux';
+import useSearch from '../../hooks/useSearch';
+import { useNavigate } from 'react-router-dom';
 
 const dummyLinks = [
     {
@@ -77,7 +78,10 @@ const Links = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    const { searchQuery } = useSelector(state => state.url)
+    const [search, setSearch ] = useState(' ')
+    const navigate = useNavigate()
+    console.log(search)
+    
     // console.log(typeof searchQuery.searchQuery)
     // console.log(currentPage)
 
@@ -124,13 +128,10 @@ const Links = () => {
                 console.error(error);
             }
         };
-    
-        fetchLinks();  // Fetch immediately
+            fetchLinks();  // Fetch immediately
     
         // Polling only when there is NO search query
-        if (!searchQuery.searchQuery || searchQuery.searchQuery.length === 0) {
             intervalId = setInterval(fetchLinks, 5000);
-        }
     
         return () => clearInterval(intervalId);
     }, [currentPage]);  // Only runs when `currentPage` changes (not on search)
@@ -154,25 +155,23 @@ const Links = () => {
         setDeleteLink(linkId)
         setDeleteFormOn(!deleteFormOn)
       };
-    useEffect(() => {
-        const fetchSearchResults = async () => {
-            if (!searchQuery.searchQuery || searchQuery.searchQuery.length === 0) return;
-            
-            try {
-                const response = await api.get('/api/urls', { 
-                    params: { search: searchQuery.searchQuery }, 
-                    withCredentials: true 
-                });
+    // useEffect(() => {
+    //     const fetchLinks = async () => {
+    //         try {
+    //             const params = { page: currentPage, limit: linksPerPage };
+    //             const response = await api.get('/api/urls', { 
+    //                 params, 
+    //                 withCredentials: true 
+    //             });
     
-                setLinks(response.data.paginatedUrls);
-                setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
-            } catch (error) {
-                console.error(error);
-            }
-        };
-    
-        fetchSearchResults();
-    }, [searchQuery.searchQuery, handleDelete, handleEdit]);  // Only runs when `searchQuery` changes
+    //             setLinks(response.data.paginatedUrls);
+    //             setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
+    //         } catch (error) {
+    //             console.error(error);
+    //         }
+    //     };
+    //     fetchLinks();
+    // }, [handleDelete, handleEdit]); 
     
   
     
@@ -226,6 +225,8 @@ const Links = () => {
           setEditFormOn={setEditFormOn} 
           response={response} 
           setResponse={setResponse} 
+          search={search}
+          setSearch={setSearch}
         />
         {!links ? (
           <div className={styles.loader}>

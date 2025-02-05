@@ -16,19 +16,18 @@ const Settings = lazy(() => import('./pages/Settings/Settings'));
 const Analytics = lazy(() => import('./pages/Analytics/Analytics'));
 const App = () => {
   const { isAuthenticated, user } = useSelector(state => state.auth)
-  const { searchQuery } = useSelector(state => state.url)
   const isMobile = useMediaQuery({ maxWidth: 768 })
   const [isOpen, setIsOpen] = useState(false);
   const [formOn, setFormOn] = useState(false);
   const navigate = useNavigate()
   return (
     <>
+    {!isAuthenticated && !user && <Navigate to={`/login`} /> }
     <Link to={user === null ? '/login' : `${user.id}/dashboard`} className={styles.logo}>
         <img className={styles.logoImg} src="/images/LogoImg.png" alt="Logo" />
       </Link>
       {isMobile && isAuthenticated && <MobileNavbar isOpen={isOpen} setIsOpen={setIsOpen} formOn={formOn} setFormOn={setFormOn} />}
       <Suspense fallback={<div className={styles.loader}><Loader /></div>}>
-      {searchQuery.searchQuery && searchQuery.searchQuery.length > 0 && <Navigate to={`/${user.id}/links`} /> }
       <Routes>
       {(!isOpen && !formOn) &&
       <>

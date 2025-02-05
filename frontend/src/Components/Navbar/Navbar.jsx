@@ -13,28 +13,31 @@ import Search from '../Search/Search';
 import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
 import useLogout from '../../hooks/useLogout';
-import { setSearchQuery, clearSearchQuery } from '../../store/slices/urlSlice';
 import useSearch from '../../hooks/useSearch';
 
-const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
+const Navbar = ({ editFormOn, setEditFormOn, response, setResponse, search, setSearch }) => {
   const [formOn, setFormOn] = useState(false);
   const [profileOn, setProfileOn] = useState(false);
   // const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const { isLoading, handleLogout } = useLogout()
-  const { handleSearch, clearSearch, search } = useSearch()
+  // const { handleSearch, clearSearch } = useSearch()
+
   
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const params = useParams();
   const { isAuthenticated, user } = useSelector(state => state.auth);
-  // const handleSearch = async (e) => {
-  //   const query = e.target.value;
-  //   setSearch(query);
-  //   dispatch(setSearchQuery({
-  //     searchQuery: query
-  //   }));
+  console.log(search)
+  
+  const handleSearch = async (e) => {
+    const query = e.target.value;
+    setSearch(query);
+    if(query !== ' ') {
+      navigate(`/${user.id}/links`)
+  }
+  }
   //   console.log(query);
   //   // if (query.length >= 2) {
     //   setIsSearching(true);
@@ -57,12 +60,9 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse }) => {
 
 
   // Function to clear search
-  // const clearSearch = () => {
-  //   setSearch('');
-  //   dispatch(setSearchQuery({
-  //     searchQuery: ''
-  //   }));
-  // };
+  const clearSearch = () => {
+    setSearch('');
+  };
 
   // if (!user) {
   //   return div className={styles.loader}><Loader /></div>

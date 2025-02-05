@@ -18,7 +18,7 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
     const [startDate, setStartDate] = useState(new Date());
     const [isLoading, setIsLoading] = useState(false);
     const [isOpen, setIsOpen] = useState(false);
-    console.log(editFormOn)
+    // console.log(editFormOn)
     // console.log('formOn: ', formOn)
     useEffect(() => {
         if (response && response !== 'undefined' && response.expirationDate === null) {
@@ -85,6 +85,7 @@ const LinkModal = ({ formOn, setFormOn, editFormOn, setEditFormOn, response, set
                         theme: 'colored',
                         style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
                     });
+                    navigate(`/${user.id}/links`);
                     return
                 }
                 if (typeof setEditFormOn === 'function') {

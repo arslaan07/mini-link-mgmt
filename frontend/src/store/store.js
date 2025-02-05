@@ -7,13 +7,12 @@ import urlReducer from './slices/urlSlice'
 const persistConfig = {
   key: 'root',
   storage,
-  whitelist: ['auth', 'url']
+  whitelist: ['auth']
 }
 
 // Combine reducers first
 const rootReducer = combineReducers({
   auth: authReducer,
-  url: urlReducer,
 })
 
 // Persist the combined reducer
