@@ -39,6 +39,8 @@ const LogIn = () => {
     
         // If no errors, proceed to submit the form
         if (Object.keys(newErrors).length === 0) {  
+          console.log(api.defaults.baseURL)
+
           const response = await api.post('api/auth/login', formData, { withCredentials: true });
           console.log(response)
           
