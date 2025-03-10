@@ -1,13 +1,13 @@
 .container {
     display: flex;
-
+    
 }
 .main {
     display: flex;
     flex-direction: column;
 }
 .dashboard {
-    flex: 1;
+    /* flex: 1; */
     background: #f1f1f1;
     display: flex;
     justify-content: start;
@@ -16,6 +16,12 @@
     color: #3B3C51;
     flex-direction: column;
     padding-top: 0.5rem;
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
 }
 .scroll {
     width: 100%;
@@ -118,7 +124,13 @@
     border-bottom: none;
   }
   .loader {
+    /* width: 83vw;
+    height: 88vh; */
+    left: 17vw;
+    position: absolute;
     width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
     height: 88vh;
   }
   .pagination {
@@ -126,28 +138,53 @@
     width: 100%;
     padding-bottom: 1rem;
   }
-  .noDataMessage {
+  /* .noDataMessage {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    font-size: 24px; 
+    font-weight: bold; 
+    color: #333; 
+    text-align: center;
+    padding: 20px;
+  } */
+  .noDataMessage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     font-size: 24px; /* Increase font size */
     font-weight: bold; /* Make the text bold */
     color: #333; /* Optional: Set the text color */
     text-align: center;
-    padding: 20px;
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
   }
   @media (max-width: 768px) {
     .noDataMessage {
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         height: 75vh;
-        width: 100vw;
+        /* width: 100vw; */
     }
     /* .createdAt {
         min-width: 120px;
       }  */
+      .dashboard {
+        left: auto;
+  position: static;
+  width: auto;
+  top: auto;
+  height: auto;
+  /* background-color: red; */
+  overflow-x: hidden;
+  /* padding: 0 300px; */
+      }
     .container {
         overflow-x: hidden;
         padding-bottom: 10px;
@@ -168,7 +205,7 @@
         padding: 0px 10px;
         /* background-color: red; */
         height: 100vh;
-
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -204,6 +241,7 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -239,6 +277,7 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -274,6 +313,7 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -295,7 +335,7 @@
         min-width: 120px;
       } */
       
-    .container {
+    .dashboard {
         overflow-x: hidden;
     }
     .tableContainer {
@@ -309,6 +349,7 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */

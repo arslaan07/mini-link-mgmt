@@ -7,6 +7,7 @@ import Loader from '../Loader/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../store/slices/authSlice';
 import { toast } from 'sonner';
+import { decrementUrlCount } from '../../store/slices/urlSlice';
 const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn, deleteLink }) => {
   const { isAuthenticated, user } = useSelector(state => state.auth)
   const dispatch = useDispatch()
@@ -31,6 +32,7 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
       if (deleteFormOn) {
         await api.delete(`/api/urls/${deleteLink}`, { withCredentials: true });
         setDeleteFormOn(false);
+        dispatch(decrementUrlCount())
         toast.success('Link deleted successfully', {
           theme: 'colored',
           style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
@@ -56,7 +58,7 @@ const DeleteModal = ({ deleteFormOn, setDeleteFormOn, isDeleteOn, setIsDeleteOn,
         style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' } 
     });
     } finally {
-      if(typeof setIsDeleteOnDelete == 'function')
+      if(typeof setIsDeleteOn === 'function')
       setIsDeleteOn(false);
       setIsLoading(false);
     }

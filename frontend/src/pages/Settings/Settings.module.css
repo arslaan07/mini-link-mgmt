@@ -6,7 +6,7 @@
     display: flex;
     flex-direction: column;
 }
-.dashboard {
+.settings {
     flex: 1;
     /* background: blue; */
     display: flex;
@@ -14,6 +14,12 @@
     justify-content: center;
     align-items: center;
     gap: 2rem;
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
 }
 
 .form {
@@ -120,17 +126,31 @@
     backdrop-filter: blur(5px);
   }
   .loader {
+    /* width: 83vw;
+    height: 88vh; */
+    left: 17vw;
+    position: absolute;
     width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
     height: 88vh;
   }
   @media (max-width: 768px) {
-    .container {
+    /* .container {
         max-width: 758px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         width: 758px;
         overflow-x: hidden;
+        left: auto;
+  position: static;
+  width: auto;
+  top: auto;
+  height: auto;
+  /* background-color: red; */
+  overflow-x: hidden;
+  /* padding: 0 300px; */
     }
     .form {
         padding-top: 14vh;
@@ -154,11 +174,11 @@
       }
   }
   @media (max-width: 668px) {
-    .container {
+    /* .container {
         max-width: 658px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         width: 658px;
         overflow-x: hidden;
     }
@@ -184,11 +204,11 @@
       }
   }
   @media (max-width: 568px) {
-    .container {
+    /* .container {
         max-width: 558px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         width: 558px;
         overflow-x: hidden;
     }
@@ -214,13 +234,14 @@
       }
   }
   @media (max-width: 478px) {
-    .container {
+    /* .container {
         max-width: 468px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         width: 468px;
         overflow-x: hidden;
+
     }
     .form {
         padding-top: 14vh;
@@ -244,11 +265,11 @@
       }
   }
   @media (max-width: 400px) {
-    .container {
+    /* .container {
         max-width: 390px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         width: 390px;
         overflow: hidden;
     }
@@ -274,11 +295,11 @@
       }
   }
   @media (max-width: 368px) {
-    .container {
+    /* .container {
         max-width: 358px;
         overflow-x: hidden;
-    }
-    .dashboard {
+    } */
+    .settings {
         max-width: 358px;
         overflow-x: hidden;
     }

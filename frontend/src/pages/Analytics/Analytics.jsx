@@ -112,11 +112,7 @@ const Analytics = () => {
   }
   return (
     <>
-  <div className={styles.container}>
-    <Sidebar />
-    <div className={styles.main}>
-      <Navbar />
-      {
+    {
   !links ? (
     <div className={styles.loader}>
       <Loader />
@@ -142,11 +138,11 @@ const Analytics = () => {
                 <td><TruncatedLink link={link.originalUrl} /></td>
                 <td>
                   <div className={styles.shortLink}>
-                    {`https://mini-link-mgmt.onrender.com/${link.shortUrl}`}
+                    {`${api.defaults.baseURL}/${link.shortUrl}`}
                   </div>
                 </td>
                 <td>{link.ipAddress}</td>
-                <td>{link.device}</td>
+                <td>{link.device.charAt(0).toUpperCase() + link.device.slice(1)}</td>
               </tr>
             ))}
           </tbody>
@@ -167,8 +163,6 @@ const Analytics = () => {
   )
 }
 
-    </div>
-  </div>
 </>
   )
 }

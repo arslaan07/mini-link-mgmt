@@ -6,7 +6,10 @@
     align-items: center;
     gap: 1rem;
     width: 83vw;
-    z-index: 100;
+    /* z-index: 100; */
+    position: absolute; 
+    top: 0; 
+    left: 17vw; 
 }
 .btn {
     background: #1B48DA;
@@ -58,7 +61,7 @@
     
   }
   .formatDateAndTime {
-    line-height: 16px;
+    line-height: 14px;
     color: #878BA9;
     font-size: 12px;
     padding-left: 2px;
@@ -67,9 +70,12 @@
   .greetings {
     display: flex;
     gap: 1px;
+    line-height: 15px;
+
   }
   .wishes {
     font-weight: bold;
+    line-height: 15px;
   }
   .modalOverlay {
     position: fixed;
@@ -102,6 +108,7 @@
     justify-content: center;
     align-items: center;
     cursor: pointer;
+    z-index: 1000;
   }
   .profileOverlay:hover {
     background-color: #F2F2F2;
@@ -167,11 +174,11 @@
 }
 
 /* Ensure the navbar container has proper z-index */
-.container {
+/* .container {
   position: relative;
   z-index: 101;
   background: white;
-}
+} */
 .loader {
   width: 100vw;
   height: 100vh;

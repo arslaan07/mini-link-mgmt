@@ -1,7 +1,5 @@
 import React, { useEffect, useState } from 'react'
 import styles from './Links.module.css'
-import Sidebar from '../../Components/Sidebar/Sidebar'
-import Navbar from '../../Components/Navbar/Navbar'
 import api from '../../../api';
 import { linkCreationDate } from '../../utils/formatDateAndTime';
 import { MdModeEdit } from "react-icons/md";
@@ -12,8 +10,10 @@ import Loader from '../../Components/Loader/Loader';
 import Pagination from '../../Components/Pagination/Pagination';
 import LinkModal from '../../Components/LinkModal/LinkModal';
 import { toast } from 'sonner';
-import useSearch from '../../hooks/useSearch';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useOutletContext } from 'react-router-dom';
+import SearchLoadingAnimation from '../../Components/SearchLoadingAnimation/SearchLoadingAnimation';
+import { useDispatch, useSelector } from 'react-redux';
+import { setUrlCount } from '../../store/slices/urlSlice';
 
 const dummyLinks = [
     {
@@ -68,7 +68,7 @@ const dummyLinks = [
       </div>
     );
   };
-const linksPerPage = 3
+const linksPerPage = 7
 const Links = () => {
     const [links, setLinks] = useState()
     const [editFormOn, setEditFormOn] = useState(false)
@@ -78,10 +78,12 @@ const Links = () => {
     const [currentPage, setCurrentPage] = useState(0)
     const [totalPages, setTotalPages] = useState(0)
     const [isLoading, setIsLoading] = useState(false)
-    const [search, setSearch ] = useState(' ')
+    const [isSearching, setIsSearching] = useState(false)
     const navigate = useNavigate()
-    console.log(search)
-    
+    const { search } = useOutletContext()
+    const dispatch = useDispatch()
+    const { urlCount } = useSelector((state) => state.url)
+
     // console.log(typeof searchQuery.searchQuery)
     // console.log(currentPage)
 
@@ -112,49 +114,73 @@ const Links = () => {
     //     // Cleanup interval on component unmount
     //     return () => clearInterval(intervalId);
     // }, [currentPage]);
-    useEffect(() => {
-        let intervalId;
-    
-        const fetchLinks = async () => {
-            try {
-                const params = { page: currentPage, limit: linksPerPage };
-                
-                // Normal fetching (without search)
-                const response = await api.get('/api/urls', { params, withCredentials: true });
-    
-                setLinks(response.data.paginatedUrls);
-                setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
-            } catch (error) {
-                console.error(error);
-            }
-        };
-            fetchLinks();  // Fetch immediately
-    
-        // Polling only when there is NO search query
-            intervalId = setInterval(fetchLinks, 5000);
-    
-        return () => clearInterval(intervalId);
-    }, [currentPage]);  // Only runs when `currentPage` changes (not on search)
     const handleEdit = async (linkId) => {
-        setIsLoading(true)
+      setIsLoading(true)
+      try {
+          const response = await api.get(`/api/urls/url/${linkId}`, { withCredentials: true });
+          setResponse(response.data.url)
+          console.log(response.data.url)
+      } catch (error) {
+          console.error(error);
+      }
+      finally {
+          setIsLoading(false)
+      }
+      // console.log(editFormOn)
+      setEditFormOn(!editFormOn)
+    };
+  
+    const handleDelete = (linkId) => {
+      setDeleteLink(linkId)
+      setDeleteFormOn(!deleteFormOn)
+    };
+    useEffect(() => {
+      const fetchLinks = async () => {
         try {
-            const response = await api.get(`/api/urls/url/${linkId}`, { withCredentials: true });
-            setResponse(response.data.url)
-            console.log(response.data.url)
+          let response;
+          let params = { page: currentPage, limit: linksPerPage };
+    
+          if (search) {
+            // Search scenario
+            setIsSearching(true)
+            params.search = search;
+            response = await api.get('/api/urls/search', { params, withCredentials: true });
+            setLinks(response.data.paginatedSearch);
+            setIsSearching(false)
+          } else {
+            // Normal fetching scenario
+            response = await api.get('/api/urls', { params, withCredentials: true });
+            setLinks(response.data.paginatedUrls);
+            dispatch(setUrlCount(response.data.paginatedUrls.length))
+          }
+    
+          setTotalPages(Math.ceil(response.data.totalLinks / linksPerPage));
         } catch (error) {
-            console.error(error);
+          console.error(error);
         }
-        finally {
-            setIsLoading(false)
-        }
-        console.log(editFormOn)
-        setEditFormOn(!editFormOn)
       };
     
-      const handleDelete = (linkId) => {
-        setDeleteLink(linkId)
-        setDeleteFormOn(!deleteFormOn)
-      };
+      // Fetch immediately
+      fetchLinks();
+    
+      // Set up polling only for non-search scenario
+      // let intervalId;
+      // if (!search) {
+      //   intervalId = setInterval(fetchLinks, 5000);
+      // }
+    
+      // Cleanup interval
+      // return () => {
+      //   if (intervalId) {
+      //     clearInterval(intervalId);
+      //   }
+      // };
+    }, [currentPage, search, urlCount]);
+    if(isLoading) {
+      return <div className={styles.loader}><Loader /></div>
+    }
+    
+    
     // useEffect(() => {
     //     const fetchLinks = async () => {
     //         try {
@@ -191,7 +217,7 @@ const Links = () => {
         return <span className={badgeClass}>{status}</span>;
       };
       const handleCopy = (text) => {
-        navigator.clipboard.writeText(`https://mini-link-mgmt.onrender.com/${text}`);
+        navigator.clipboard.writeText(`${api.defaults.baseURL}/${text}`);
         toast.success('YAY! Link copied', {
             theme: 'colored',
             style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' },
@@ -201,40 +227,42 @@ const Links = () => {
 
  
   const checkStatus = (d) => {     
-    let currentDate = new Date()  
-    let expiryDate = new Date(d)   
+    let currentDate = new Date()
+    let expiryDate
+    if(d === null) {
+      expiryDate = new Date(currentDate)
+      expiryDate.setDate(currentDate.getDate() + 1)
+    }
+    else {
+      expiryDate = new Date(d)
+    }
     return expiryDate > currentDate ? "Active" : "Inactive"   
 } 
-
-  return (
-    <>
-    {
-        isLoading && (
-        <div className={styles.loader}>
-          <Loader />
-        </div>
-      ) 
-    }
-    {
-  isLoading === false && (
-    <div className={styles.container}>
-      <Sidebar />
-      <div className={styles.main}>
-        <Navbar 
+{/* <Navbar 
           editFormOn={editFormOn} 
           setEditFormOn={setEditFormOn} 
           response={response} 
           setResponse={setResponse} 
           search={search}
           setSearch={setSearch}
-        />
-        {!links ? (
-          <div className={styles.loader}>
-            <Loader />
-          </div>
-        ) : (
-          links.length > 0 ? (
-            <div className={styles.dashboard}>
+        /> */}
+
+  return (
+<>
+  {isLoading && (
+    <div className={styles.loader}>
+      <Loader />
+    </div>
+  )}
+  {isLoading === false && (
+    <>
+      {!links ? (
+        <div className={styles.loader}>
+          <Loader />
+        </div>
+      ) : (
+        links.length > 0 ? (
+          <div className={styles.dashboard}>
             <div className={styles.scroll}>
               <table className={styles.tableContainer}>
                 <thead className={styles.tableHeader}>
@@ -255,7 +283,7 @@ const Links = () => {
                       <td><TruncatedLink link={link.originalUrl} /></td>
                       <td>
                         <div className={styles.shortLink}>
-                          <TruncatedLink link={`https://mini-link-mgmt.onrender.com/${link.shortUrl}`} />
+                          <TruncatedLink link={`${api.defaults.baseURL}/${link.shortUrl}`} />
                           <IoCopyOutline 
                             className={styles.copyIcon} 
                             onClick={() => handleCopy(link.shortUrl)} 
@@ -287,50 +315,46 @@ const Links = () => {
                   ))}
                 </tbody>
               </table>
-              </div>
-              <div className={styles.pagination}>
-                {
-                    totalPages > 1 &&
-                    <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
-                }
-              </div>
             </div>
-          ) : (
-            <div className={styles.noLinksMessage}>
-              No links created yet.
+            <div className={styles.pagination}>
+              {totalPages > 1 && (
+                <Pagination currentPage={currentPage} setCurrentPage={setCurrentPage} totalPages={totalPages} />
+              )}
             </div>
-          )
-        )}
-      </div>
-
-      {deleteFormOn && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <DeleteModal 
-              deleteFormOn={deleteFormOn} 
-              setDeleteFormOn={setDeleteFormOn} 
-              deleteLink={deleteLink} 
-            />
           </div>
-        </div>
-      )}
-      {editFormOn && (
-        <div className={styles.modalOverlay}>
-          <div className={styles.modalContent}>
-            <LinkModal
-              editFormOn={editFormOn}
-              setEditFormOn={setEditFormOn}
-              response={response}
-              setResponse={setResponse}
-            />
+        ) : (
+          <div className={styles.noLinksMessage}>
+            No links created yet.
           </div>
-        </div>
+        )
       )}
-    </div>
-  )
-}
-
     </>
+  )}
+  {deleteFormOn && (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <DeleteModal 
+          deleteFormOn={deleteFormOn} 
+          setDeleteFormOn={setDeleteFormOn} 
+          deleteLink={deleteLink} 
+        />
+      </div>
+    </div>
+  )}
+  {editFormOn && (
+    <div className={styles.modalOverlay}>
+      <div className={styles.modalContent}>
+        <LinkModal
+          editFormOn={editFormOn}
+          setEditFormOn={setEditFormOn}
+          response={response}
+          setResponse={setResponse}
+        />
+      </div>
+    </div>
+  )}
+  <SearchLoadingAnimation isSearching = {isSearching} />
+</>
   )
 }
 

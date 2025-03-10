@@ -1,12 +1,12 @@
 .container {
     display: flex;
+    
 }
 .main {
     display: flex;
     flex-direction: column;
 }
 .dashboard {
-    flex: 1;
     background: #f1f1f1;
     display: flex;
     justify-content: start;
@@ -15,6 +15,14 @@
     color: #3B3C51;
     flex-direction: column;
     padding-top: 0.5rem;
+    /* background-color: aqua; */
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
+    /* background-color: red; */
 }
 .scroll {
     width: 100%;
@@ -139,8 +147,24 @@
     color: #636d7e;
   }
   .loader {
-    width: 100vw;
-    height: 100vh;
+    /* width: 100%;
+    height: 100%; */
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
+  }
+  .search {
+    /* width: 100%;
+    height: 100%; */
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
   }
   .pagination {
     /* background-color: red; */
@@ -180,21 +204,25 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100%;
     font-size: 24px; /* Increase font size */
     font-weight: bold; /* Make the text bold */
     color: #333; /* Optional: Set the text color */
     text-align: center;
-    padding: 20px;
+    left: 17vw;
+    position: absolute;
+    width: 83vw;
+    top: 12vh;
+    /* background-color: aqua; */
+    height: 88vh;
   }
   
   @media (max-width: 768px) {
     .noLinksMessage {
         display: flex;
-        justify-content: center;
+        justify-content: start;
         align-items: center;
         height: 75vh;
-        width: 100vw;
+        /* width: 100vw; */
     }
     .fullRemark {
       left: 50%;
@@ -205,19 +233,31 @@
     .createdAt {
         min-width: 120px;
       }
-    .container {
-        overflow-x: hidden;
-        background-color: #f1f1f1;
+      .dashboard {
+        left: auto;
+  position: static;
+  width: auto;
+  top: auto;
+  height: auto;
+  /* background-color: red; */
+  overflow-x: hidden;
+  /* padding: 0 300px; */
+      }
+    
+    .tableContainer {
+      /* width: 500px; */
+      /* padding: 0 1500px; */
+
     }
-    /* .tableContainer {
-      width: 500px;
-    } */
     .scroll {
         all: unset;
         width: 650px;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
+        /* background-color: rgb(47, 0, 255); */
+        margin-left: 10px;
+
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -254,6 +294,8 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
+        margin-left: 10px;
+
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -271,7 +313,7 @@
     .fullRemark {
       left: 50%;
       transform: translateX(-50%);
-      width: 90vw;
+      width: 85vw;
       max-width: 300px;
     }
     .createdAt {
@@ -292,6 +334,8 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
+        margin-left: 10px;
+
         /* background-color: red; */
     }
     .scroll::-webkit-scrollbar {
@@ -313,13 +357,19 @@
       width: 90vw;
       max-width: 300px;
     }
+    .dashboard {
+      left: auto;
+position: static;
+width: auto;
+top: auto;
+height: auto;
+overflow-x: hidden;
+padding: 0 175px;
+    }
     .createdAt {
         min-width: 120px;
       }
       
-    .container {
-        overflow-x: hidden;
-    }
     .tableContainer {
       width: 500px;
     }
@@ -330,6 +380,7 @@
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
+        margin-left: 10px;
         /* background-color: red; */
     }
     .scroll::-webkit-scrollbar {
@@ -346,19 +397,11 @@
   }
  
   @media (max-width: 368px) {
-    .fullRemark {
-      left: 50%;
-      transform: translateX(-50%);
-      width: 90vw;
-      max-width: 330px;
-    }
-    .createdAt {
+    /* .createdAt {
         min-width: 120px;
-      }
+      } */
       
-    .container {
-        overflow-x: hidden;
-    }
+    
     .tableContainer {
       width: 500px;
     }
@@ -370,6 +413,7 @@
         -webkit-overflow-scrolling: touch;
         padding: 0px 10px;
         /* background-color: red; */
+        margin-left: 10px;
     }
     .scroll::-webkit-scrollbar {
         height: 8px; /* Set the height for horizontal scrollbar */
@@ -381,5 +425,8 @@
         background: #ffffff;
         border-radius: 50px;
     }
-      
+    .loader {
+        width: 100vw;
+        height: 100vh;
+      }
   }

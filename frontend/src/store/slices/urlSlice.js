@@ -1,18 +1,25 @@
 import { createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
-    urls: {}
+    urlCount: 0,
 }
 
 const urlSlice = createSlice({
     name: 'url',
     initialState,
     reducers: {
-        setUrls(state, action) {
-            state.urls = action.payload
-        }
+        incrementUrlCount(state) {
+            state.urlCount += 1
+        },
+        decrementUrlCount(state) {
+            state.urlCount -= 1
+        },
+        setUrlCount(state, action) {
+            state.urlCount = action.payload
+        },
+        
     }
 })
 
-export const { setUrls } = urlSlice.actions
+export const { incrementUrlCount, decrementUrlCount, setUrlCount } = urlSlice.actions
 export default urlSlice.reducer

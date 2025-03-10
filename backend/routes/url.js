@@ -55,12 +55,13 @@ router.get("/", verifyToken, async (req, res) => {
     }
     // Get total count before pagination
     const totalLinks = await Url.countDocuments(filter);
-
+    // console.log("skip: ", page* limit)
+    // console.log("limit: ", limit)
     // Apply search and pagination directly in MongoDB query
     const paginatedUrls = await Url.find(filter)
       .sort({ createdAt: -1 })
       .skip(page * limit)
-      .limit((page + 1) * limit);
+      .limit(limit);
 
     return res.status(200).json({ 
       success: true, 
@@ -137,18 +138,33 @@ router.get("/analytics", verifyToken, async (req, res) => {
 });
 router.get('/search', verifyToken, async (req, res) => {
   try {
-    const searchQuery = req.query.q || '';  // Get query from request
-    const userId = req.user.id;  // Get user ID from token
+    const page = parseInt(req.query.page) || 0;  // Parse as integer
+    const limit = parseInt(req.query.limit) || 10;  // Parse as integer
+    const search = req.query.search || '';
+    let filter = { createdBy: req.user.id };
 
-    // Use regex for case-insensitive partial matching
-    const urls = await Url.find({
-      createdBy: userId,
-      remarks: { $regex: searchQuery, $options: 'i' }
-    }).sort({ createdAt: -1 });
-    res.status(200).json({ success: true, urls });
+    filter.$or = [
+        { remarks: { $regex: search, $options: 'i' } },
+        { originalUrl: { $regex: search, $options: 'i' } }
+      ];
+    const totalLinks = await Url.countDocuments(filter);
+    const paginatedSearch = await Url.find(filter)
+      .sort({ createdAt: -1 })
+      .skip(page * limit)
+      .limit(limit);
+
+    return res.status(200).json({ 
+      success: true, 
+      paginatedSearch, 
+      totalLinks, 
+     });
+
   } catch (error) {
-    console.error('Search error:', error);
-    res.status(500).json({ success: false, message: 'Failed to search URLs' });
+    return res.status(500).json({
+      success: false,
+      message: "Failed to search link",
+      error: error.message
+    });
   }
 });
 

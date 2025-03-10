@@ -1,12 +1,12 @@
 // MobileNavbar/index.jsx
 import React, { useState } from "react";
-import { Menu, Plus, Search, Sun } from "lucide-react";
+import { Menu } from "lucide-react";
 import styles from "./MobileNavbar.module.css";
 import { formatDateAndTime } from "../../utils/formatDateAndTime";
 import { useSelector } from "react-redux";
 import { FaPlus } from "react-icons/fa6";
 import { IoSearchOutline } from "react-icons/io5";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { RiHomeSmile2Line } from "react-icons/ri";
 import { HiLink } from "react-icons/hi";
 import { FaArrowTrendUp } from "react-icons/fa6";
@@ -15,12 +15,8 @@ import { IoMdLogOut } from "react-icons/io";
 import Loader from '../Loader/Loader';
 import LinkModal from "../LinkModal/LinkModal";
 import useLogout from "../../hooks/useLogout";
-import useSearch from "../../hooks/useSearch";
 
-// import TopBar from './components/TopBar';
-// import ActionBar from './components/ActionBar';
-// import NavigationMenu from './components/NavigationMenu';
-// MobileNavbar/components/TopBar.jsx
+
 
 const TopBar = ({ setIsOpen, isOpen }) => {
   const user = useSelector((state) => state.auth.user);
@@ -30,7 +26,7 @@ const TopBar = ({ setIsOpen, isOpen }) => {
         <div className={styles.greetings}>
           ☀️
           <div className={styles.wishes}>
-            Good morning, {user.name.split(' ')[0]} <br />
+            Good morning, {user?.name.split(' ')[0]} <br />
             <p className={styles.formatDateAndTime}>{formatDateAndTime()}</p>
           </div>
         </div>
@@ -43,9 +39,19 @@ const TopBar = ({ setIsOpen, isOpen }) => {
 };
 
 // MobileNavbar/components/ActionBar.jsx
-const ActionBar = ({formOn, setFormOn}) => {
-  const [response, setResponse] = useState()
-  const { handleSearch, clearSearch, search } = useSearch()
+const ActionBar = ({formOn, setFormOn, search, setSearch}) => {
+  const { user } = useSelector(state => state.auth)
+  const navigate = useNavigate()
+  const handleSearch = async (e) => {
+    const query = e.target.value;
+    setSearch(query);
+    if(query !== ' ') {
+      navigate(`/${user.id}/links`)
+    }
+  }
+  const clearSearch = () => {
+    setSearch('');
+  };
   return (
     <div className={styles.actionsContainer}>
       <div onClick={() => setFormOn(!formOn)} className={styles.btn}>
@@ -57,7 +63,7 @@ const ActionBar = ({formOn, setFormOn}) => {
                   <input
                     type="text"
                     placeholder="Search by remarks"
-                    value={search}
+                    value={search !== null ? search : ''}
                     onChange={handleSearch}
                     className={styles.searchInput}
                   />
@@ -117,7 +123,7 @@ const NavigationMenu = ({isOpen, setIsOpen}) => {
     );
   };
 
-const MobileNavbar = ({isOpen, setIsOpen, formOn, setFormOn}) => {
+const MobileNavbar = ({isOpen, setIsOpen, formOn, setFormOn, search, setSearch}) => {
     const { isLoading } = useLogout()
     if(isLoading) {
         return <div className={styles.loader}>
@@ -127,7 +133,7 @@ const MobileNavbar = ({isOpen, setIsOpen, formOn, setFormOn}) => {
   return (
     <nav className={styles.navbar}>
       <TopBar setIsOpen={setIsOpen} isOpen={isOpen} />
-      <ActionBar formOn={formOn} setFormOn={setFormOn} />
+      <ActionBar formOn={formOn} setFormOn={setFormOn} search={search} setSearch={setSearch} />
       {isOpen && <NavigationMenu isOpen={isOpen} setIsOpen={setIsOpen} />}
     </nav>
   );

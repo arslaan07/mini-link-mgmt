@@ -13,12 +13,11 @@ import Search from '../Search/Search';
 import Loader from '../Loader/Loader';
 import { toast } from 'sonner';
 import useLogout from '../../hooks/useLogout';
-import useSearch from '../../hooks/useSearch';
+// import useSearch from '../../hooks/useSearch';
 
 const Navbar = ({ editFormOn, setEditFormOn, response, setResponse, search, setSearch }) => {
   const [formOn, setFormOn] = useState(false);
   const [profileOn, setProfileOn] = useState(false);
-  // const [search, setSearch] = useState('');
   const [searchResults, setSearchResults] = useState(null);
   const [isSearching, setIsSearching] = useState(false);
   const { isLoading, handleLogout } = useLogout()
@@ -29,11 +28,11 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse, search, setS
   const dispatch = useDispatch();
   const params = useParams();
   const { isAuthenticated, user } = useSelector(state => state.auth);
-  console.log(search)
   
   const handleSearch = async (e) => {
     const query = e.target.value;
     setSearch(query);
+    
     if(query !== ' ') {
       navigate(`/${user.id}/links`)
   }
@@ -92,7 +91,7 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse, search, setS
             <input
               type="text"
               placeholder="Search by remarks"
-              value={search}
+              value={search !== null ? search : ''}
               onChange={handleSearch}
               className={styles.searchInput}
             />
@@ -147,6 +146,5 @@ const Navbar = ({ editFormOn, setEditFormOn, response, setResponse, search, setS
       )}
     </>
   );
-
 }
 export default Navbar;

@@ -118,14 +118,6 @@ const Dashboard = () => {
 
   return (
     <div className={styles.container}>
-      <Sidebar />
-      <div className={styles.main}>
-        <Navbar />
-        {/* {totalClicks && totalClicks.length === 0 &&
-          <div>No links yet</div>
-        } */}
-        
-        
         <div className={styles.dashboard}>
           <div className={styles.heading}>
             <header>Total Clicks</header>
@@ -245,10 +237,7 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
-          
-        
       </div>
-    </div>
   );
 };
 

@@ -1,14 +1,17 @@
-import React from 'react'
-import styles from './SearchLoadingAnimation.css'
-const SearchLoadingAnimation = ({ isSearching }) => {
-    if (!isSearching) return null;
-  return (
-    <div className={styles.loadingContainer}>
-    <div className={styles.loadingDot}></div>
-    <div className={styles.loadingDot}></div>
-    <div className={styles.loadingDot}></div>
-  </div>
-  )
-}
+import React from 'react';
+import styles from './SearchLoadingAnimation.module.css';
 
-export default SearchLoadingAnimation
+const SearchLoadingAnimation = ({ isSearching }) => {
+  if (!isSearching) return null;
+  
+  return (
+    <div className={styles.loaderContainer}>
+      <div className={styles.searchCircle}>
+        <div className={styles.searchInner}></div>
+      </div>
+      <div className={styles.searchText}>Searching...</div>
+    </div>
+  );
+};
+
+export default SearchLoadingAnimation;

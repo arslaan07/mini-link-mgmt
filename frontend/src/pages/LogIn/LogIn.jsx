@@ -71,7 +71,7 @@ const LogIn = () => {
   return (
     <div className={styles.container}>
       <div className={styles.heroImg}>
-        <img className={styles.clouds} src="./images/heroImg.png" alt="" />
+        <img className={styles.clouds} src="./images/pro.png" alt="" />
       </div>
       <div className={styles.heroSection}>
         <nav className={styles.nav}>

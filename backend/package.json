@@ -4,8 +4,7 @@
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
-    "dev": "npx nodemon app.js"
+    "start": "npx nodemon app.js"
   },
   "author": "",
   "license": "ISC",
@@ -23,6 +22,7 @@
     "mongoose": "^8.9.5",
     "nanoid": "^5.0.9",
     "ua-parser-js": "^2.0.0",
-    "uuid": "^11.0.5"
+    "uuid": "^11.0.5",
+    "ws": "^8.18.0"
   }
 }

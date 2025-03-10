@@ -8,7 +8,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import api from '../../../api';
 import { login } from '../../store/slices/authSlice';
 import Loader from '../../Components/Loader/Loader';
-import { toast } from 'react-toastify';
+import { toast } from 'sonner';
 
 const Settings = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -85,11 +85,15 @@ const Settings = () => {
                 }));
                 toast.success('Profile updated successfully', {
                                         theme: 'colored',
-                                        style: { backgroundColor: '#fff', color: '#0073e6' } // Custom blue color
+                                        style: { backgroundColor: '#bb6a3b', color: '#fff', fontSize: '16px' } 
                                     });
                 console.log("Form submitted successfully:", formData);
                 
             } catch (error) {
+                toast.success('Profile updated failed', {
+                    theme: 'colored',
+                    style: { backgroundColor: '#ed4337', color: '#fff', fontSize: '16px' }
+                });
                 console.error(error);
             }
             finally {
@@ -119,14 +123,11 @@ const Settings = () => {
     //     }
     // }
     return (
-        <div className={styles.container}>
-            <Sidebar />
-            <div className={styles.main}>
-                <Navbar />
+        <>
                 {
                     isLoading ? <div className={styles.loader}><Loader /></div> : (
                 
-                <div className={styles.dashboard}>
+                <div className={styles.settings}>
                     <div className={styles.form}>
                         <form >
                             <div className={styles.formGroup}>
@@ -203,7 +204,6 @@ const Settings = () => {
                     </div>
                 </div>
                 )}
-            </div>
             {isDeleteOn && (
                 <div className={styles.modalOverlay}>
                     <div className={styles.modalContent}>
@@ -211,8 +211,9 @@ const Settings = () => {
                     </div>
                 </div>
             )}
-        </div>
+        </>
     );
+    
 };
 
 export default Settings;
